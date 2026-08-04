@@ -57,7 +57,7 @@
         }
 
         .card-header-title {
-            font-size: 1rem;
+            font-size: 1.15rem;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -68,7 +68,7 @@
         }
 
         .source-link {
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             color: #2563EB;
             text-decoration: underline;
             margin-top: 0.75rem;
@@ -86,32 +86,49 @@
             text-transform: uppercase;
             letter-spacing: 0.025em;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            position: relative;
+            border: 2px solid transparent;
         }
 
         .tab-btn:hover {
             transform: translateY(-2px);
         }
 
+        /* HIGH-VISIBILITY ACTIVE TAB STYLING */
         .tab-btn.active {
-            transform: scale(1.02);
-            border-bottom: 5px solid #000050;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
+            border-color: #000050 !important;
+            box-shadow: 0 0 0 4px #93DFE3, 0 12px 20px -3px rgba(0, 0, 0, 0.3) !important;
+            z-index: 10;
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 8px solid #000050;
         }
 
         .stat-value {
-            font-size: 1.75rem;
+            font-size: 1.95rem;
             font-weight: 900;
             line-height: 1.1;
         }
 
         @media (min-width: 640px) {
             .stat-value {
-                font-size: 2.25rem;
+                font-size: 2.5rem;
             }
         }
 
         .stat-label {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             font-weight: 700;
             text-transform: uppercase;
             color: #475569;
@@ -153,20 +170,20 @@
     <div class="embed-container">
         <!-- TOP BAR BRANDING -->
         <header class="mb-6">
-            <div class="text-xs font-bold uppercase tracking-widest text-slate-600 mb-1">
+            <div class="text-sm font-bold uppercase tracking-widest text-slate-600 mb-1">
                 U.S. Census Overview, from Inclusive Insights &amp; Analytics
             </div>
             
             <!-- TITLE & INTRO SECTION -->
             <div class="bg-white rounded-2xl p-4 md:p-8 border-4 border-indigo-900 shadow-xl mb-6">
-                <h1 class="text-2xl sm:text-3xl md:text-5xl font-black text-indigo-950 mb-4 tracking-tight">
+                <h1 class="text-3xl sm:text-4xl md:text-6xl font-black text-indigo-950 mb-4 tracking-tight">
                     Welcome to the U.S Census Population Guide
                 </h1>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 text-slate-800 font-medium text-xs sm:text-sm md:text-base leading-relaxed">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 text-slate-800 font-medium text-sm sm:text-base md:text-lg leading-relaxed">
                     <!-- Section 1: Intro -->
                     <div class="bg-indigo-50/60 p-4 rounded-xl border-l-8 border-indigo-900">
-                        <h2 class="text-base md:text-lg font-extrabold text-indigo-950 uppercase tracking-wide mb-2">About The U.S. Census</h2>
+                        <h2 class="text-lg md:text-xl font-extrabold text-indigo-950 uppercase tracking-wide mb-2">About The U.S. Census</h2>
                         <p>
                             The U.S. Census is a comprehensive decennial count and ongoing annual survey (American Community Survey) conducted by the federal government to measure the nation's population, demographic shifts, economic vitality, and social composition. For advertising agencies and brand clients, this data is an essential strategic foundation. It illuminates exactly who audiences are, identifies emerging demographic growth hubs, reveals cultural shifts, and details target market composition. Leveraging this intelligence ensures media investments, messaging, and creative strategy resonate authentically with America's rapidly evolving consumer base.
                         </p>
@@ -174,7 +191,7 @@
                     
                     <!-- Section 2: User Guide -->
                     <div class="bg-slate-100 p-4 rounded-xl border-l-8 border-slate-700">
-                        <h2 class="text-base md:text-lg font-extrabold text-slate-900 uppercase tracking-wide mb-2">How To Use This Tool</h2>
+                        <h2 class="text-lg md:text-xl font-extrabold text-slate-900 uppercase tracking-wide mb-2">How To Use This Tool</h2>
                         <p>
                             Click on the audience tabs below to instantly view generational spreads, complete college attainment breakdowns, and visual charts. The <strong class="text-indigo-900 font-bold">Total US Population</strong> tab houses macro projections, state-level insights, and trend timelines. Use the Survey Year dropdown menu to toggle across historical and modern ACS 1-Year datasets (2021–2024). All visualizations, figures, and state distributions will automatically update to match the selected survey benchmark.
                         </p>
@@ -184,47 +201,49 @@
                 <!-- YEAR SELECTION DROPDOWN -->
                 <div class="mt-4 md:mt-6 flex flex-wrap items-center justify-between bg-indigo-950 text-white p-3 md:p-4 rounded-xl gap-3">
                     <div class="flex items-center gap-3">
-                        <span class="font-extrabold uppercase text-xs sm:text-sm tracking-wider text-cyan-300">Active Benchmark Dataset:</span>
-                        <select id="yearSelect" onchange="changeYear(this.value)" class="bg-white text-indigo-950 font-extrabold px-3 py-1.5 rounded-lg text-xs sm:text-sm border-2 border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-300 cursor-pointer">
+                        <span class="font-extrabold uppercase text-sm sm:text-base tracking-wider text-cyan-300">Active Benchmark Dataset:</span>
+                        <select id="yearSelect" onchange="changeYear(this.value)" class="bg-white text-indigo-950 font-extrabold px-3 py-1.5 rounded-lg text-sm sm:text-base border-2 border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-300 cursor-pointer">
                             <option value="2024" selected="">ACS 1-Year Survey (2024 - Latest)</option>
                             <option value="2023">ACS 1-Year Survey (2023)</option>
                             <option value="2022">ACS 1-Year Survey (2022)</option>
                             <option value="2021">ACS 1-Year Survey (2021)</option>
                         </select>
                     </div>
-                    <div class="text-xs font-semibold text-slate-300">
+                    <div class="text-sm font-semibold text-slate-300">
                         Default Census Data Portal Target: <a id="portalLink" href="https://data.census.gov" target="_blank" rel="noopener noreferrer" class="text-cyan-300 underline font-bold">data.census.gov (2024 ACS)</a>
                     </div>
                 </div>
             </div>
 
-            <!-- AUDIENCE TABS -->
-            <nav class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 mb-6" id="tabsContainer">
-                <button onclick="switchTab('total')" id="tab-total" class="tab-btn active bg-slate-900 text-white py-2.5 px-2 rounded-xl text-xs text-center font-black">
-                    Total Population
-                </button>
-                <button onclick="switchTab('white')" id="tab-white" class="tab-btn bg-tabWhite text-white py-2.5 px-2 rounded-xl text-xs text-center font-black">
-                    White
-                </button>
-                <button onclick="switchTab('black')" id="tab-black" class="tab-btn bg-tabBlack text-white py-2.5 px-2 rounded-xl text-xs text-center font-black">
-                    Black
-                </button>
-                <button onclick="switchTab('hispanic')" id="tab-hispanic" class="tab-btn bg-tabHispanic text-white py-2.5 px-2 rounded-xl text-xs text-center font-black">
-                    Hispanic
-                </button>
-                <button onclick="switchTab('asian')" id="tab-asian" class="tab-btn bg-tabAsian text-white py-2.5 px-2 rounded-xl text-xs text-center font-black">
-                    Asian
-                </button>
-                <button onclick="switchTab('native')" id="tab-native" class="tab-btn bg-tabNative text-white py-2.5 px-2 rounded-xl text-xs text-center font-black">
-                    Native Americans
-                </button>
-                <button onclick="switchTab('twomore')" id="tab-twomore" class="tab-btn bg-tabTwoMore text-white py-2.5 px-2 rounded-xl text-xs text-center font-black">
-                    Two or More Races
-                </button>
-                <button onclick="switchTab('lgbtq')" id="tab-lgbtq" class="tab-btn bg-tabLgbtq text-white py-2.5 px-2 rounded-xl text-xs text-center font-black">
-                    LGBTQ+
-                </button>
-            </nav>
+            <!-- AUDIENCE TABS STICKY HEADER CONTAINER -->
+            <div class="sticky top-2 z-50 bg-[#E8E5F4]/90 backdrop-blur-md pt-2 pb-3 mb-6 rounded-2xl">
+                <nav class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2" id="tabsContainer">
+                    <button onclick="switchTab('total')" id="tab-total" class="tab-btn active bg-slate-900 text-white py-2.5 px-2 rounded-xl text-xs sm:text-sm text-center font-black">
+                        Total Population
+                    </button>
+                    <button onclick="switchTab('white')" id="tab-white" class="tab-btn bg-tabWhite text-white py-2.5 px-2 rounded-xl text-xs sm:text-sm text-center font-black">
+                        White
+                    </button>
+                    <button onclick="switchTab('black')" id="tab-black" class="tab-btn bg-tabBlack text-white py-2.5 px-2 rounded-xl text-xs sm:text-sm text-center font-black">
+                        Black
+                    </button>
+                    <button onclick="switchTab('hispanic')" id="tab-hispanic" class="tab-btn bg-tabHispanic text-white py-2.5 px-2 rounded-xl text-xs sm:text-sm text-center font-black">
+                        Hispanic
+                    </button>
+                    <button onclick="switchTab('asian')" id="tab-asian" class="tab-btn bg-tabAsian text-white py-2.5 px-2 rounded-xl text-xs sm:text-sm text-center font-black">
+                        Asian
+                    </button>
+                    <button onclick="switchTab('native')" id="tab-native" class="tab-btn bg-tabNative text-white py-2.5 px-2 rounded-xl text-xs sm:text-sm text-center font-black">
+                        Native Americans
+                    </button>
+                    <button onclick="switchTab('twomore')" id="tab-twomore" class="tab-btn bg-tabTwoMore text-white py-2.5 px-2 rounded-xl text-xs sm:text-sm text-center font-black">
+                        Two or More Races
+                    </button>
+                    <button onclick="switchTab('lgbtq')" id="tab-lgbtq" class="tab-btn bg-tabLgbtq text-white py-2.5 px-2 rounded-xl text-xs sm:text-sm text-center font-black">
+                        LGBTQ+
+                    </button>
+                </nav>
+            </div>
         </header>
 
         <!-- MAIN DYNAMIC CONTENT CONTAINER -->
@@ -235,10 +254,10 @@
         <!-- FOOTER & GLOSSARY -->
         <footer class="mt-12 bg-white rounded-2xl p-4 md:p-8 border-4 border-slate-300 shadow-lg space-y-6">
             <div>
-                <h3 class="text-lg md:text-xl font-black text-indigo-950 uppercase tracking-wide mb-4 border-b-2 border-slate-200 pb-2">
+                <h3 class="text-xl md:text-2xl font-black text-indigo-950 uppercase tracking-wide mb-4 border-b-2 border-slate-200 pb-2">
                     Demographic Glossary of Terms (U.S. Census Bureau Definitions)
                 </h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 text-xs sm:text-sm">
                     <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
                         <span class="font-extrabold text-indigo-900 block mb-1">White Tab (White, Non-Hispanic)</span>
                         Individuals claiming origin from Europe, the Middle East, or North Africa, who do not identify as Hispanic or Latino.
@@ -276,14 +295,14 @@
             </div>
 
             <!-- ACCURACY & QA LEGEND -->
-            <div class="bg-amber-50 border-2 border-amber-300 p-3 md:p-4 rounded-xl text-xs space-y-1">
+            <div class="bg-amber-50 border-2 border-amber-300 p-3 md:p-4 rounded-xl text-xs sm:text-sm space-y-1">
                 <div class="font-black text-amber-950 uppercase tracking-wider mb-1">Quality Assurance &amp; Data Disclaimer Legend:</div>
-                <p class="text-amber-900 font-semibold"><span class="text-red-600 font-extrabold text-sm">*</span> Indicates that there may be a mathematical or source error. Please double check the source and use it directionally.</p>
-                <p class="text-amber-900 font-semibold"><span class="text-blue-600 font-extrabold text-sm">*</span> Indicates that this data was collected prior to 2024, and may not reflect current populations trends.</p>
+                <p class="text-amber-900 font-semibold"><span class="text-red-600 font-extrabold text-base">*</span> Indicates that there may be a mathematical or source error. Please double check the source and use it directionally.</p>
+                <p class="text-amber-900 font-semibold"><span class="text-blue-600 font-extrabold text-base">*</span> Indicates that this data was collected prior to 2024, and may not reflect current populations trends.</p>
             </div>
 
             <!-- FOOTER CONTACT -->
-            <div class="pt-4 border-t-2 border-slate-200 text-center flex flex-col sm:flex-row justify-between items-center text-xs font-extrabold text-indigo-950 gap-2">
+            <div class="pt-4 border-t-2 border-slate-200 text-center flex flex-col sm:flex-row justify-between items-center text-xs sm:text-sm font-extrabold text-indigo-950 gap-2">
                 <div>© Inclusive Insights &amp; Analytics | U.S. Census Demographic Intelligence Tool</div>
                 <div>Contact Team: <a href="mailto:inclusiveinsightsandanalytics@wppmedia.com" class="text-blue-700 underline font-black">inclusiveinsightsandanalytics@wppmedia.com</a></div>
             </div>
@@ -306,6 +325,7 @@
                 multiculturalShare: "42.5%",
                 prevChange: "+0.8%",
                 totalUSShare: "100%",
+                compositionShares: { white: 57.4, hispanic: 18.6, black: 13.3, asian: 6.1, twomore: 2.9, other: 1.7 },
                 audiences: {
                     total: {
                         name: "Total Population",
@@ -632,6 +652,7 @@
                 multiculturalShare: "42.1%",
                 prevChange: "+0.7%",
                 totalUSShare: "100%",
+                compositionShares: { white: 57.9, hispanic: 18.5, black: 13.2, asian: 6.0, twomore: 2.9, other: 1.5 },
                 audiences: {
                     total: {
                         name: "Total Population",
@@ -958,6 +979,7 @@
                 multiculturalShare: "41.8%",
                 prevChange: "+0.6%",
                 totalUSShare: "100%",
+                compositionShares: { white: 58.4, hispanic: 18.4, black: 13.2, asian: 5.9, twomore: 2.8, other: 1.3 },
                 audiences: {
                     total: {
                         name: "Total Population",
@@ -1284,6 +1306,7 @@
                 multiculturalShare: "41.5%",
                 prevChange: "+0.5%",
                 totalUSShare: "100%",
+                compositionShares: { white: 58.8, hispanic: 18.2, black: 13.1, asian: 5.7, twomore: 2.8, other: 1.4 },
                 audiences: {
                     total: {
                         name: "Total Population",
@@ -1670,14 +1693,14 @@
         function renderTotalTab(data, activeYearData) {
             return `
                 <div class="card-box border-4 border-slate-900 bg-slate-900 text-white">
-                    <div class="card-header-title border-slate-700 !text-cyan-300">Audience Overview - Total U.S. Population Benchmark</div>
+                    <div class="card-header-title border-slate-700 !text-cyan-300">${currentYear} AUDIENCE OVERVIEW - TOTAL US POPULATION BENCHMARK</div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 my-2">
                         <div class="bg-slate-800 p-3 rounded-xl text-center">
                             <div class="stat-label text-slate-300">Total Estimated U.S. Pop</div>
                             <div class="stat-value text-cyan-300">${activeYearData.totalPop}</div>
                         </div>
                         <div class="bg-slate-800 p-3 rounded-xl text-center">
-                            <div class="stat-label text-slate-300">Increase from Prev. ACS 1-Yr</div>
+                            <div class="stat-label text-slate-300">INCREASE FROM PREVIOUS YEAR</div>
                             <div class="stat-value text-emerald-400">${activeYearData.prevIncrease}</div>
                         </div>
                         <div class="bg-slate-800 p-3 rounded-xl text-center">
@@ -1685,7 +1708,7 @@
                             <div class="stat-value text-lime-400">${activeYearData.multiculturalShare}</div>
                         </div>
                         <div class="bg-slate-800 p-3 rounded-xl text-center">
-                            <div class="stat-label text-slate-300">Multicultural YoY Shift</div>
+                            <div class="stat-label text-slate-300">Multicultural YoY Increase</div>
                             <div class="stat-value text-yellow-300">${activeYearData.prevChange}</div>
                         </div>
                         <div class="bg-slate-800 p-3 rounded-xl text-center">
@@ -1698,9 +1721,9 @@
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div class="card-box">
-                        <div class="card-header-title">2024 U.S. Population Composition by Race & Ethnicity</div>
-                        <div class="relative h-64 sm:h-80 w-full">
-                            <canvas id="totalCompositionPie"></canvas>
+                        <div class="card-header-title">${currentYear} U.S. Population Composition by Race & Ethnicity</div>
+                        <div class="relative h-64 sm:h-80 w-full flex items-center">
+                            <canvas id="totalCompositionStackedBar"></canvas>
                         </div>
                         <a href="${data.censusUrl}" target="_blank" rel="noopener noreferrer" class="source-link">Source: U.S. Census Bureau Table B03002 (${currentYear})</a>
                     </div>
@@ -1745,6 +1768,8 @@
                     <a href="https://www.census.gov/programs-surveys/popproj.html" target="_blank" rel="noopener noreferrer" class="source-link">Source: U.S. Census Bureau Historical Projections Matrix</a>
                 </div>
 
+                ${renderGenderCard(data, false)}
+
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div class="card-box">
                         <div class="card-header-title">Age Cohort Distribution Breakdown by Race/Ethnicity</div>
@@ -1780,11 +1805,11 @@
                     </div>
                 </div>
 
-                ${renderAudienceDemographicCards(data, false)}
+                ${renderAudienceDemographicCardsExceptGender(data, false)}
             `;
         }
 
-        function renderAudienceDemographicCards(data, isLgbtq) {
+        function renderGenderCard(data, isLgbtq) {
             return `
                 <div class="card-box">
                     <div class="card-header-title">Gender Split</div>
@@ -1805,21 +1830,25 @@
                     ${isLgbtq ? `
                     <div class="mt-3 bg-slate-50 border border-slate-300 p-3 rounded-xl space-y-2">
                         <div class="text-xs font-black text-slate-900 uppercase">LGBTQ+ Sub-Group Identity Breakout:</div>
-                        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-center text-xs font-bold text-indigo-950">
+                        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-center text-xs sm:text-sm font-bold text-indigo-950">
                             ${data.breakoutDetail.map(item => `<div class="bg-white p-2 rounded-lg border border-slate-200">${item}</div>`).join('')}
                         </div>
                     </div>
                     ` : ''}
                     <a href="${data.censusUrl}" target="_blank" rel="noopener noreferrer" class="source-link">Source: ${isLgbtq ? 'Gallup / Williams Institute / Trevor Project (2024-2025)' : 'U.S. Census Bureau Table S0101 (' + currentYear + ')'}</a>
                 </div>
+            `;
+        }
 
+        function renderAudienceDemographicCardsExceptGender(data, isLgbtq) {
+            return `
                 <div class="card-box">
                     <div class="card-header-title">Age Breakouts</div>
                     <div class="mb-3">
                         <span class="stat-label">Median Age:</span>
                         <span class="text-xl sm:text-2xl font-black text-indigo-950 ml-2">${data.medianAge}</span>
                     </div>
-                    <div class="relative h-24 w-full">
+                    <div class="relative h-28 w-full flex items-center">
                         <canvas id="genStackedBar"></canvas>
                     </div>
                     <a href="${data.censusUrl}" target="_blank" rel="noopener noreferrer" class="source-link">Source: ${isLgbtq ? 'Gallup / Williams Institute (2024)' : 'U.S. Census Bureau Table S0101 (' + currentYear + ')'}</a>
@@ -1827,26 +1856,26 @@
 
                 <div class="card-box">
                     <div class="card-header-title">Nativity</div>
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 items-stretch">
                         <div class="flex flex-col justify-center space-y-3">
-                            <div class="bg-indigo-950 text-white p-3.5 rounded-xl text-center">
+                            <div class="bg-indigo-950 text-white p-4 rounded-xl text-center h-full flex flex-col justify-center">
                                 <div class="stat-label text-cyan-300">U.S. Born</div>
                                 <div class="stat-value">${data.usBorn}</div>
                             </div>
-                            <div class="bg-blue-600 text-white p-3.5 rounded-xl text-center">
+                            <div class="bg-blue-600 text-white p-4 rounded-xl text-center h-full flex flex-col justify-center">
                                 <div class="stat-label text-blue-100">Foreign Born</div>
                                 <div class="stat-value">${data.foreignBorn}</div>
                             </div>
                         </div>
-                        <div class="lg:col-span-2">
+                        <div class="lg:col-span-2 flex flex-col justify-between">
                             <div class="stat-label mb-2">Top 10 Ancestry Breakouts</div>
-                            <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                            <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 h-full">
                                 ${isLgbtq ? `
-                                    <div class="col-span-2 sm:col-span-5 bg-indigo-50 border border-indigo-200 p-3 rounded-lg text-xs font-semibold text-indigo-950">
+                                    <div class="col-span-2 sm:col-span-5 bg-indigo-50 border border-indigo-200 p-4 rounded-xl text-sm md:text-base font-semibold text-indigo-950 flex items-center justify-center">
                                         LGBTQ+ nativity data tracks national population averages. Sub-ethnic and heritage identification mirrors national origin trends across White, Hispanic, Black, and Asian subgroups.
                                     </div>
                                 ` : data.ancestry.map(anc => `
-                                    <div class="bg-slate-100 border border-slate-300 p-2 rounded-lg text-center font-bold text-xs text-indigo-950">
+                                    <div class="bg-slate-100 border border-slate-300 p-3 sm:p-4 rounded-xl text-center font-bold text-sm sm:text-base text-indigo-950 flex items-center justify-center shadow-sm">
                                         ${anc}
                                     </div>
                                 `).join('')}
@@ -1873,7 +1902,7 @@
                         </div>
                     </div>
                     ${isLgbtq ? `
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2 text-xs font-black text-slate-800">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2 text-xs sm:text-sm font-black text-slate-800">
                         <div class="bg-purple-50 p-2.5 rounded-lg border border-purple-200">Marital Status: ${data.maritalStatus}</div>
                         <div class="bg-purple-50 p-2.5 rounded-lg border border-purple-200">Parental Status: ${data.parentalStatus}</div>
                     </div>
@@ -1894,7 +1923,7 @@
                         </div>
                         <div class="bg-indigo-50 border-2 border-indigo-300 p-3.5 rounded-xl text-center">
                             <div class="stat-label">College Degree Status (Bachelor+)</div>
-                            <div class="stat-value text-indigo-900">${data.collegeDegree}</div>
+                            <div class="stat-value text-indigo-950">${data.collegeDegree}</div>
                         </div>
                     </div>
                     <a href="${data.censusUrl}" target="_blank" rel="noopener noreferrer" class="source-link">Source: ${isLgbtq ? 'Williams Institute / GLAAD (2024)' : 'U.S. Census Bureau Table S1901 / S2301 / S1501 (' + currentYear + ')'}</a>
@@ -1908,8 +1937,8 @@
                             <div class="stat-value text-lime-400 mt-1">${data.spendingPower}</div>
                         </div>
                         <div class="text-left sm:text-right">
-                            <div class="text-xs font-bold text-slate-300">Attributed Market Source:</div>
-                            <a href="${data.spendingUrl}" target="_blank" rel="noopener noreferrer" class="text-cyan-300 font-extrabold underline text-xs sm:text-sm hover:text-white">${data.spendingSource}</a>
+                            <div class="text-xs sm:text-sm font-bold text-slate-300">Attributed Market Source:</div>
+                            <a href="${data.spendingUrl}" target="_blank" rel="noopener noreferrer" class="text-cyan-300 font-extrabold underline text-sm sm:text-base hover:text-white">${data.spendingSource}</a>
                         </div>
                     </div>
                     <a href="${data.spendingUrl}" target="_blank" rel="noopener noreferrer" class="source-link">External Data Source Reference Link</a>
@@ -1925,9 +1954,46 @@
                     </div>
                     <a href="${data.censusUrl}" target="_blank" rel="noopener noreferrer" class="source-link">Source: ${isLgbtq ? 'Trevor Project / Williams Institute (2024)' : 'U.S. Census Bureau Table S1810 (' + currentYear + ')'}</a>
                 </div>
+            `;
+        }
+
+        function renderAudienceTab(data, isLgbtq) {
+            return `
+                <div class="card-box">
+                    <div class="card-header-title">Audience Overview</div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 my-2">
+                        <div class="bg-indigo-50 border-2 border-indigo-200 p-3.5 rounded-xl text-center">
+                            <div class="stat-label">Total Population</div>
+                            <div class="stat-value text-indigo-950">${data.totalPop} ${isLgbtq ? '<span class="text-blue-600 font-bold">*</span>' : ''}</div>
+                        </div>
+                        <div class="bg-cyan-50 border-2 border-cyan-200 p-3.5 rounded-xl text-center">
+                            <div class="stat-label">Share (%) of U.S. Population</div>
+                            <div class="stat-value text-cyan-800">${data.shareUS}</div>
+                        </div>
+                        <div class="bg-lime-50 border-2 border-lime-200 p-3.5 rounded-xl text-center">
+                            <div class="stat-label">% Contributed to Growth (2024–2060)</div>
+                            <div class="stat-value text-emerald-800">${data.contribGrowth}</div>
+                        </div>
+                    </div>
+                    ${isLgbtq ? `<div class="mt-2 text-xs sm:text-sm font-bold text-slate-700 bg-cyan-100 p-2.5 rounded-lg">Growth Since 2010 Benchmark: ${data.growthFrom2010} <span class="text-blue-600 font-bold">*</span></div>` : ''}
+                    <a href="${data.censusUrl}" target="_blank" rel="noopener noreferrer" class="source-link">Source: ${isLgbtq ? data.tableRef : 'U.S. Census Bureau Table ' + data.tableRef + ' (' + currentYear + ')'}</a>
+                </div>
+
+                ${isLgbtq ? `
+                <div class="card-box">
+                    <div class="card-header-title">LGBTQ+ Population Breakdown by Race & Ethnicity</div>
+                    <div class="relative h-64 sm:h-72 w-full flex items-center">
+                        <canvas id="lgbtqRaceStackedBar"></canvas>
+                    </div>
+                    <a href="${data.censusUrl}" target="_blank" rel="noopener noreferrer" class="source-link">Source: Williams Institute / Gallup (2024–2025)</a>
+                </div>
+                ` : ''}
+
+                ${renderGenderCard(data, isLgbtq)}
+                ${renderAudienceDemographicCardsExceptGender(data, isLgbtq)}
 
                 <div class="card-box">
-                    <div class="card-header-title">State-Level Insights</div>
+                    <div class="card-header-title">TOP 10 STATES</div>
                     <div class="overflow-x-auto">
                         <table class="w-full text-xs md:text-sm text-left">
                             <thead class="bg-indigo-950 text-white font-bold">
@@ -1953,63 +2019,38 @@
             `;
         }
 
-        function renderAudienceTab(data, isLgbtq) {
-            return `
-                <div class="card-box">
-                    <div class="card-header-title">Audience Overview</div>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 my-2">
-                        <div class="bg-indigo-50 border-2 border-indigo-200 p-3.5 rounded-xl text-center">
-                            <div class="stat-label">Total Population</div>
-                            <div class="stat-value text-indigo-950">${data.totalPop} ${isLgbtq ? '<span class="text-blue-600 font-bold">*</span>' : ''}</div>
-                        </div>
-                        <div class="bg-cyan-50 border-2 border-cyan-200 p-3.5 rounded-xl text-center">
-                            <div class="stat-label">Share (%) of U.S. Population</div>
-                            <div class="stat-value text-cyan-800">${data.shareUS}</div>
-                        </div>
-                        <div class="bg-lime-50 border-2 border-lime-200 p-3.5 rounded-xl text-center">
-                            <div class="stat-label">% Contributed to Growth (2024–2060)</div>
-                            <div class="stat-value text-emerald-800">${data.contribGrowth}</div>
-                        </div>
-                    </div>
-                    ${isLgbtq ? `<div class="mt-2 text-xs font-bold text-slate-700 bg-cyan-100 p-2.5 rounded-lg">Growth Since 2010 Benchmark: ${data.growthFrom2010} <span class="text-blue-600 font-bold">*</span></div>` : ''}
-                    <a href="${data.censusUrl}" target="_blank" rel="noopener noreferrer" class="source-link">Source: ${isLgbtq ? data.tableRef : 'U.S. Census Bureau Table ' + data.tableRef + ' (' + currentYear + ')'}</a>
-                </div>
-
-                ${isLgbtq ? `
-                <div class="card-box">
-                    <div class="card-header-title">LGBTQ+ Population Breakdown by Race & Ethnicity</div>
-                    <div class="relative h-64 sm:h-72 w-full">
-                        <canvas id="lgbtqRacePie"></canvas>
-                    </div>
-                    <a href="${data.censusUrl}" target="_blank" rel="noopener noreferrer" class="source-link">Source: Williams Institute / Gallup (2024–2025)</a>
-                </div>
-                ` : ''}
-
-                ${renderAudienceDemographicCards(data, isLgbtq)}
-            `;
-        }
-
         function initTotalCharts() {
-            const ctxPie = document.getElementById('totalCompositionPie');
-            if (ctxPie) {
-                new Chart(ctxPie, {
-                    type: 'pie',
+            const ctxStackedComp = document.getElementById('totalCompositionStackedBar');
+            if (ctxStackedComp) {
+                const c = censusDB[currentYear].compositionShares;
+                new Chart(ctxStackedComp, {
+                    type: 'bar',
                     data: {
-                        labels: ['White (NH)', 'Hispanic', 'Black', 'Asian', '2+ Races', 'Other'],
-                        datasets: [{
-                            data: [57.4, 18.6, 13.3, 6.1, 2.9, 1.7],
-                            backgroundColor: ['#000050', '#B0F467', '#5465FF', '#93DFE3', '#788BFF', '#00DBEE']
-                        }]
+                        labels: ['U.S. Population Share'],
+                        datasets: [
+                            { label: 'White (NH)', data: [c.white], backgroundColor: '#000050', barThickness: 60 },
+                            { label: 'Hispanic', data: [c.hispanic], backgroundColor: '#B0F467', barThickness: 60 },
+                            { label: 'Black', data: [c.black], backgroundColor: '#5465FF', barThickness: 60 },
+                            { label: 'Asian', data: [c.asian], backgroundColor: '#00DBEE', barThickness: 60 },
+                            { label: '2+ Races', data: [c.twomore], backgroundColor: '#788BFF', barThickness: 60 },
+                            { label: 'Other', data: [c.other], backgroundColor: '#93DFE3', barThickness: 60 }
+                        ]
                     },
                     options: {
+                        indexAxis: 'y',
                         responsive: true,
                         maintainAspectRatio: false,
+                        scales: {
+                            x: { stacked: true, display: false, max: 100 },
+                            y: { stacked: true, display: false }
+                        },
                         plugins: {
-                            legend: { position: 'bottom', labels: { font: { family: 'Poppins', weight: 'bold', size: 10 } } },
+                            legend: { position: 'bottom', labels: { font: { family: 'Poppins', size: 11, weight: 'bold' } } },
                             datalabels: {
-                                color: '#FFFFFF',
-                                font: { family: 'Poppins', weight: 'bold', size: 10 },
-                                formatter: (val, ctx) => `${ctx.chart.data.labels[ctx.dataIndex]}: ${val}%`
+                                display: true,
+                                color: (ctx) => [0, 2, 4].includes(ctx.datasetIndex) ? '#FFFFFF' : '#0F172A',
+                                font: { family: 'Poppins', weight: 'bold', size: 12 },
+                                formatter: (val) => val > 2 ? `${val}%` : ''
                             }
                         }
                     }
@@ -2023,11 +2064,11 @@
                     data: {
                         labels: ['2024', '2030', '2040', '2045', '2050', '2060'],
                         datasets: [
-                            { label: 'White (NH)', data: [57.4, 54.5, 50.7, 49.8, 46.8, 43.2], borderColor: '#000050', backgroundColor: '#000050', tension: 0.2, borderWidth: 3 },
-                            { label: 'Hispanic', data: [18.6, 20.2, 22.3, 23.5, 24.2, 25.9], borderColor: '#B0F467', backgroundColor: '#B0F467', tension: 0.2, borderWidth: 3 },
-                            { label: 'Black', data: [13.3, 13.4, 13.7, 13.9, 13.9, 14.3], borderColor: '#5465FF', backgroundColor: '#5465FF', tension: 0.2, borderWidth: 3 },
-                            { label: 'Asian', data: [6.1, 6.8, 7.6, 8.0, 8.4, 9.1], borderColor: '#00DBEE', backgroundColor: '#00DBEE', tension: 0.2, borderWidth: 3 },
-                            { label: '2+ Races', data: [2.9, 3.5, 4.2, 4.6, 5.0, 5.9], borderColor: '#788BFF', backgroundColor: '#788BFF', tension: 0.2, borderWidth: 3 }
+                            { label: 'White (NH)', data: [57.4, 54.5, 50.7, 49.8, 46.8, 43.2], borderColor: '#000050', backgroundColor: '#000050', tension: 0.2, borderWidth: 4 },
+                            { label: 'Hispanic', data: [18.6, 20.2, 22.3, 23.5, 24.2, 25.9], borderColor: '#B0F467', backgroundColor: '#B0F467', tension: 0.2, borderWidth: 4 },
+                            { label: 'Black', data: [13.3, 13.4, 13.7, 13.9, 13.9, 14.3], borderColor: '#5465FF', backgroundColor: '#5465FF', tension: 0.2, borderWidth: 4 },
+                            { label: 'Asian', data: [6.1, 6.8, 7.6, 8.0, 8.4, 9.1], borderColor: '#00DBEE', backgroundColor: '#00DBEE', tension: 0.2, borderWidth: 4 },
+                            { label: '2+ Races', data: [2.9, 3.5, 4.2, 4.6, 5.0, 5.9], borderColor: '#788BFF', backgroundColor: '#788BFF', tension: 0.2, borderWidth: 4 }
                         ]
                     },
                     options: {
@@ -2045,7 +2086,7 @@
                                         xMin: '2045',
                                         xMax: '2045',
                                         borderColor: '#DC2626',
-                                        borderWidth: 2,
+                                        borderWidth: 3,
                                         borderDash: [6, 6],
                                         label: {
                                             display: true,
@@ -2073,25 +2114,25 @@
                     data: {
                         labels: ageCohortsData.categories,
                         datasets: [
-                            { label: 'Under 18', data: ageCohortsData.under18, backgroundColor: '#93DFE3' },
-                            { label: '18–34 yrs', data: ageCohortsData.age18to34, backgroundColor: '#B0F467' },
-                            { label: '35–54 yrs', data: ageCohortsData.age35to54, backgroundColor: '#5465FF' },
-                            { label: '55+ yrs', data: ageCohortsData.age55plus, backgroundColor: '#000050' }
+                            { label: 'Under 18', data: ageCohortsData.under18, backgroundColor: '#93DFE3', barThickness: 50 },
+                            { label: '18–34 yrs', data: ageCohortsData.age18to34, backgroundColor: '#B0F467', barThickness: 50 },
+                            { label: '35–54 yrs', data: ageCohortsData.age35to54, backgroundColor: '#5465FF', barThickness: 50 },
+                            { label: '55+ yrs', data: ageCohortsData.age55plus, backgroundColor: '#000050', barThickness: 50 }
                         ]
                     },
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
                         scales: {
-                            x: { stacked: true, title: { display: true, text: 'Racial / Ethnic Audience Grouping', font: { weight: 'bold' } } },
-                            y: { stacked: true, title: { display: true, text: 'Age Share (%)', font: { weight: 'bold' } }, max: 100 }
+                            x: { stacked: true, title: { display: true, text: 'Racial / Ethnic Audience Grouping', font: { weight: 'bold' } }, ticks: { font: { family: 'Poppins', weight: 'bold' } } },
+                            y: { display: false, stacked: true, max: 100 }
                         },
                         plugins: {
-                            legend: { position: 'bottom', labels: { font: { family: 'Poppins', size: 10, weight: 'bold' } } },
+                            legend: { position: 'bottom', labels: { font: { family: 'Poppins', size: 11, weight: 'bold' } } },
                             datalabels: {
                                 display: true,
                                 color: (ctx) => ctx.datasetIndex === 3 ? '#FFFFFF' : (ctx.datasetIndex === 2 ? '#FFFFFF' : '#0F172A'),
-                                font: { family: 'Poppins', weight: 'bold', size: 9 },
+                                font: { family: 'Poppins', weight: 'bold', size: 11 },
                                 formatter: (val) => `${val}%`
                             }
                         }
@@ -2111,11 +2152,11 @@
                     data: {
                         labels: ['Generational Spread'],
                         datasets: [
-                            { label: 'Gen Z', data: [parseFloat(g.genZ)], backgroundColor: '#00DBEE' },
-                            { label: 'Millennial', data: [parseFloat(g.millennial)], backgroundColor: '#B0F467' },
-                            { label: 'Gen X', data: [parseFloat(g.genX)], backgroundColor: '#5465FF' },
-                            { label: 'Boomer', data: [parseFloat(g.boomer)], backgroundColor: '#788BFF' },
-                            { label: 'Silent/Older', data: [parseFloat(g.silent)], backgroundColor: '#000050' }
+                            { label: 'Gen Z', data: [parseFloat(g.genZ)], backgroundColor: '#00DBEE', barThickness: 60 },
+                            { label: 'Millennial', data: [parseFloat(g.millennial)], backgroundColor: '#B0F467', barThickness: 60 },
+                            { label: 'Gen X', data: [parseFloat(g.genX)], backgroundColor: '#5465FF', barThickness: 60 },
+                            { label: 'Boomer', data: [parseFloat(g.boomer)], backgroundColor: '#788BFF', barThickness: 60 },
+                            { label: 'Silent/Older', data: [parseFloat(g.silent)], backgroundColor: '#000050', barThickness: 60 }
                         ]
                     },
                     options: {
@@ -2123,14 +2164,15 @@
                         responsive: true,
                         maintainAspectRatio: false,
                         scales: {
-                            x: { stacked: true, max: 100, title: { display: true, text: 'Percentage (%)', font: { weight: 'bold' } } },
+                            x: { stacked: true, display: false, max: 100 },
                             y: { stacked: true, display: false }
                         },
                         plugins: {
-                            legend: { position: 'bottom', labels: { font: { family: 'Poppins', size: 10, weight: 'bold' } } },
+                            legend: { position: 'bottom', labels: { font: { family: 'Poppins', size: 11, weight: 'bold' } } },
                             datalabels: {
-                                color: '#FFFFFF',
-                                font: { family: 'Poppins', weight: 'bold', size: 10 },
+                                display: true,
+                                color: (ctx) => [2, 4].includes(ctx.datasetIndex) ? '#FFFFFF' : '#0F172A',
+                                font: { family: 'Poppins', weight: 'bold', size: 12 },
                                 formatter: (val) => `${val}%`
                             }
                         }
@@ -2139,26 +2181,35 @@
             }
 
             if (isLgbtq) {
-                const ctxLgbtqPie = document.getElementById('lgbtqRacePie');
-                if (ctxLgbtqPie) {
-                    new Chart(ctxLgbtqPie, {
-                        type: 'pie',
+                const ctxLgbtqStacked = document.getElementById('lgbtqRaceStackedBar');
+                if (ctxLgbtqStacked) {
+                    new Chart(ctxLgbtqStacked, {
+                        type: 'bar',
                         data: {
-                            labels: ['White', 'Hispanic', 'Black', 'Asian', 'Multiracial'],
-                            datasets: [{
-                                data: [51.2, 22.4, 13.1, 5.8, 6.5],
-                                backgroundColor: ['#000050', '#B0F467', '#5465FF', '#93DFE3', '#FCFE67']
-                            }]
+                            labels: ['LGBTQ+ Racial Share'],
+                            datasets: [
+                                { label: 'White', data: [parseFloat(data.raceEthnicityPie.white)], backgroundColor: '#000050', barThickness: 60 },
+                                { label: 'Hispanic', data: [parseFloat(data.raceEthnicityPie.hispanic)], backgroundColor: '#B0F467', barThickness: 60 },
+                                { label: 'Black', data: [parseFloat(data.raceEthnicityPie.black)], backgroundColor: '#5465FF', barThickness: 60 },
+                                { label: 'Asian', data: [parseFloat(data.raceEthnicityPie.asian)], backgroundColor: '#93DFE3', barThickness: 60 },
+                                { label: 'Multiracial', data: [parseFloat(data.raceEthnicityPie.multiracial)], backgroundColor: '#FCFE67', barThickness: 60 }
+                            ]
                         },
                         options: {
+                            indexAxis: 'y',
                             responsive: true,
                             maintainAspectRatio: false,
+                            scales: {
+                                x: { stacked: true, display: false, max: 100 },
+                                y: { stacked: true, display: false }
+                            },
                             plugins: {
-                                legend: { position: 'bottom', labels: { font: { family: 'Poppins', size: 10, weight: 'bold' } } },
+                                legend: { position: 'bottom', labels: { font: { family: 'Poppins', size: 11, weight: 'bold' } } },
                                 datalabels: {
-                                    color: '#FFFFFF',
-                                    font: { family: 'Poppins', weight: 'bold', size: 10 },
-                                    formatter: (val, ctx) => `${ctx.chart.data.labels[ctx.dataIndex]}: ${val}%`
+                                    display: true,
+                                    color: (ctx) => [0, 2].includes(ctx.datasetIndex) ? '#FFFFFF' : '#0F172A',
+                                    font: { family: 'Poppins', weight: 'bold', size: 12 },
+                                    formatter: (val) => `${val}%`
                                 }
                             }
                         }
