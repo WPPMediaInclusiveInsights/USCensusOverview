@@ -322,23 +322,23 @@
         let currentYear = "2024";
         let currentTab = "total";
 
-        // MASTER SOURCE MAPPING DICTIONARY
+        // MASTER SOURCE MAPPING DICTIONARY (FULLY SYNCHRONIZED WITH WORKBOOK KEY TABS)
         const sourceMap = {
             total: {
-                totalPop: { code: "B03002", url: "https://data.census.gov/table?q=B03002" },
+                totalPop: { code: "DP05", url: "https://data.census.gov/table?q=DP05" },
                 shareUS: { code: "Table 5", url: "https://www.census.gov/data/tables/2023/demo/popproj/2023-summary-tables.html" },
                 medianAge: { code: "DP05", url: "https://data.census.gov/table?q=DP05" },
-                avgHHSize: { code: "Table AGV1", url: "https://www.census.gov/data/tables/2023/demo/families/cps-2023.html" },
-                disabilityStatus: { code: "S1810", url: "https://data.census.gov/table?q=S1810" },
-                medianIncome: { code: "B19013", url: "https://data.census.gov/table?q=B19013" },
-                collegeDegree: { code: "B15002", url: "https://data.census.gov/table?q=B15002" },
+                avgHHSize: { code: "AVG1", url: "https://www.census.gov/data/tables/2023/demo/families/cps-2023.html" },
+                disabilityStatus: { code: "DP02", url: "https://data.census.gov/table?q=DP02" },
+                medianIncome: { code: "DP03", url: "https://data.census.gov/table?q=DP03" },
+                collegeDegree: { code: "DP02", url: "https://data.census.gov/table?q=DP02" },
                 gender: { code: "DP05", url: "https://data.census.gov/table?q=DP05" }
             },
             white: {
                 totalPop: { code: "B03002", url: "https://data.census.gov/table?q=B03002" },
                 shareUS: { code: "Table 5", url: "https://www.census.gov/data/tables/2023/demo/popproj/2023-summary-tables.html" },
                 medianAge: { code: "B01002H", url: "https://data.census.gov/table?q=B01002H" },
-                avgHHSize: { code: "Table AGV1", url: "https://www.census.gov/data/tables/2023/demo/families/cps-2023.html" },
+                avgHHSize: { code: "AVG1", url: "https://www.census.gov/data/tables/2023/demo/families/cps-2023.html" },
                 disabilityStatus: { code: "B18101H", url: "https://data.census.gov/table?q=B18101H" },
                 medianIncome: { code: "B19013H", url: "https://data.census.gov/table?q=B19013H" },
                 collegeDegree: { code: "B15002H", url: "https://data.census.gov/table?q=B15002H" },
@@ -348,7 +348,7 @@
                 totalPop: { code: "B03002", url: "https://data.census.gov/table?q=B03002" },
                 shareUS: { code: "Table 5", url: "https://www.census.gov/data/tables/2023/demo/popproj/2023-summary-tables.html" },
                 medianAge: { code: "B01002B", url: "https://data.census.gov/table?q=B01002B" },
-                avgHHSize: { code: "Table AGV1", url: "https://www.census.gov/data/tables/2023/demo/families/cps-2023.html" },
+                avgHHSize: { code: "AVG1", url: "https://www.census.gov/data/tables/2023/demo/families/cps-2023.html" },
                 disabilityStatus: { code: "B18101B", url: "https://data.census.gov/table?q=B18101B" },
                 medianIncome: { code: "B19013B", url: "https://data.census.gov/table?q=B19013B" },
                 collegeDegree: { code: "B15002B", url: "https://data.census.gov/table?q=B15002B" },
@@ -358,7 +358,7 @@
                 totalPop: { code: "B03002", url: "https://data.census.gov/table?q=B03002" },
                 shareUS: { code: "Table 5", url: "https://www.census.gov/data/tables/2023/demo/popproj/2023-summary-tables.html" },
                 medianAge: { code: "B01002I", url: "https://data.census.gov/table?q=B01002I" },
-                avgHHSize: { code: "Table AGV1", url: "https://www.census.gov/data/tables/2023/demo/families/cps-2023.html" },
+                avgHHSize: { code: "AVG1", url: "https://www.census.gov/data/tables/2023/demo/families/cps-2023.html" },
                 disabilityStatus: { code: "B18101I", url: "https://data.census.gov/table?q=B18101I" },
                 medianIncome: { code: "B19013I", url: "https://data.census.gov/table?q=B19013I" },
                 collegeDegree: { code: "B15002I", url: "https://data.census.gov/table?q=B15002I" },
@@ -368,7 +368,7 @@
                 totalPop: { code: "B03002", url: "https://data.census.gov/table?q=B03002" },
                 shareUS: { code: "Table 5", url: "https://www.census.gov/data/tables/2023/demo/popproj/2023-summary-tables.html" },
                 medianAge: { code: "B01002D", url: "https://data.census.gov/table?q=B01002D" },
-                avgHHSize: { code: "Table AGV1", url: "https://www.census.gov/data/tables/2023/demo/families/cps-2023.html" },
+                avgHHSize: { code: "AVG1", url: "https://www.census.gov/data/tables/2023/demo/families/cps-2023.html" },
                 disabilityStatus: { code: "B18101D", url: "https://data.census.gov/table?q=B18101D" },
                 medianIncome: { code: "B19013D", url: "https://data.census.gov/table?q=B19013D" },
                 collegeDegree: { code: "B15002D", url: "https://data.census.gov/table?q=B15002D" },
@@ -378,7 +378,7 @@
                 totalPop: { code: "B03002", url: "https://data.census.gov/table?q=B03002" },
                 shareUS: { code: "Table 5", url: "https://www.census.gov/data/tables/2023/demo/popproj/2023-summary-tables.html" },
                 medianAge: { code: "B01002C", url: "https://data.census.gov/table?q=B01002C" },
-                avgHHSize: { code: "Table AGV1", url: "https://www.census.gov/data/tables/2023/demo/families/cps-2023.html" },
+                avgHHSize: { code: "AVG1", url: "https://www.census.gov/data/tables/2023/demo/families/cps-2023.html" },
                 disabilityStatus: { code: "B18101C", url: "https://data.census.gov/table?q=B18101C" },
                 medianIncome: { code: "B19013C", url: "https://data.census.gov/table?q=B19013C" },
                 collegeDegree: { code: "B15002C", url: "https://data.census.gov/table?q=B15002C" },
@@ -388,7 +388,7 @@
                 totalPop: { code: "B03002", url: "https://data.census.gov/table?q=B03002" },
                 shareUS: { code: "Table 5", url: "https://www.census.gov/data/tables/2023/demo/popproj/2023-summary-tables.html" },
                 medianAge: { code: "B01002G", url: "https://data.census.gov/table?q=B01002G" },
-                avgHHSize: { code: "Table AGV1", url: "https://www.census.gov/data/tables/2023/demo/families/cps-2023.html" },
+                avgHHSize: { code: "AVG1", url: "https://www.census.gov/data/tables/2023/demo/families/cps-2023.html" },
                 disabilityStatus: { code: "B18101G", url: "https://data.census.gov/table?q=B18101G" },
                 medianIncome: { code: "B19013G", url: "https://data.census.gov/table?q=B19013G" },
                 collegeDegree: { code: "B15002G", url: "https://data.census.gov/table?q=B15002G" },
@@ -397,11 +397,11 @@
             lgbtq: {
                 totalPop: { code: "Gallup 2025", url: "https://news.gallup.com/poll/702206/lgbtq-identification-holds.aspx" },
                 shareUS: { code: "Gallup 2025", url: "https://news.gallup.com/poll/702206/lgbtq-identification-holds.aspx" },
-                medianAge: { code: "Williams Institute", url: "https://williamsinstitute.law.ucla.edu/quick-facts/lgbt-faqs/" },
-                avgHHSize: { code: "Williams Institute", url: "https://williamsinstitute.law.ucla.edu/quick-facts/lgbt-faqs/" },
-                disabilityStatus: { code: "Williams Institute", url: "https://williamsinstitute.law.ucla.edu/quick-facts/lgbt-faqs/" },
-                medianIncome: { code: "Williams Institute", url: "https://williamsinstitute.law.ucla.edu/quick-facts/lgbt-faqs/" },
-                collegeDegree: { code: "Williams Institute", url: "https://williamsinstitute.law.ucla.edu/quick-facts/lgbt-faqs/" },
+                medianAge: { code: "Gallup 2025", url: "https://news.gallup.com/poll/702206/lgbtq-identification-holds.aspx" },
+                avgHHSize: { code: "MRI-Simmons", url: "https://www.mrisimmons.com" },
+                disabilityStatus: { code: "MRI-Simmons", url: "https://www.mrisimmons.com" },
+                medianIncome: { code: "MRI-Simmons", url: "https://www.mrisimmons.com" },
+                collegeDegree: { code: "MRI-Simmons", url: "https://www.mrisimmons.com" },
                 gender: { code: "Gallup 2025", url: "https://news.gallup.com/poll/702206/lgbtq-identification-holds.aspx" }
             }
         };
@@ -1432,11 +1432,11 @@
 
         function getTopStatesLink() {
             if (currentTab === 'lgbtq') {
-                return `<a href="https://williamsinstitute.law.ucla.edu/quick-facts/lgbt-faqs/" target="_blank" rel="noopener noreferrer" class="source-link">Williams Institute</a>`;
+                return `<a href="https://news.gallup.com/poll/702206/lgbtq-identification-holds.aspx" target="_blank" rel="noopener noreferrer" class="source-link">Gallup 2025</a>`;
             }
             let mapObj = sourceMap[currentTab] && sourceMap[currentTab].totalPop ? sourceMap[currentTab].totalPop : { code: "B03002" };
             let tableCode = mapObj.code;
-            let linkUrl = `https://data.census.gov/table/ACSDT1Y${currentYear}.${tableCode}?q=${tableCode}&g=010XX00US$0400000&moe=false`;
+            let linkUrl = `https://data.census.gov/table?q=${tableCode}`;
             return `<a href="${linkUrl}" target="_blank" rel="noopener noreferrer" class="source-link">Census Table ${tableCode}</a>`;
         }
 
@@ -1595,7 +1595,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="text-right"><a href="https://data.census.gov/table/ACSDT1Y2024.B03002?q=B03002&amp;g=010XX00US$0400000&amp;moe=false" target="_blank" rel="noopener noreferrer" class="source-link">Census Table B03002</a></div>
+                        <div class="text-right"><a href="https://data.census.gov/table?q=B03002" target="_blank" rel="noopener noreferrer" class="source-link">Census Table B03002</a></div>
                     </div>
                 </div>
 
