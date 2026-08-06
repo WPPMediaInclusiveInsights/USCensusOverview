@@ -214,7 +214,7 @@
                         </select>
                     </div>
                     <div class="text-sm font-semibold text-white">
-                        Default Census Data Portal Target: <a id="portalLink" href="https://data.census.gov/table?q=DP05" target="_blank" rel="noopener noreferrer" class="text-cyan-300 underline font-bold">data.census.gov (2024 ACS)</a>
+                        Default Census Data Portal Target: <a id="portalLink" href="https://data.census.gov/table/ACSDP1Y2024.DP05?q=DP05" target="_blank" rel="noopener noreferrer" class="text-cyan-300 underline font-bold">data.census.gov (2024 ACS)</a>
                     </div>
                 </div>
             </div>
@@ -321,77 +321,77 @@
         let currentYear = "2024";
         let currentTab = "total";
 
-        // MASTER SOURCE MAPPING DICTIONARY
+        // VERIFIED MASTER SOURCE MAPPING DICTIONARY MATCHING 2024 WORKBOOKS & ACS 1-YEAR BENCHMARKS
         const sourceMap = {
             total: {
-                totalPop: { code: "B03002", url: "https://data.census.gov/table?q=B03002" },
+                totalPop: { code: "B03002", url: "https://data.census.gov/table/ACSDT1Y2024.B03002?q=B03002" },
                 shareUS: { code: "Table 5", url: "https://www.census.gov/data/tables/2023/demo/popproj/2023-summary-tables.html" },
-                medianAge: { code: "DP05", url: "https://data.census.gov/table?q=DP05" },
+                medianAge: { code: "DP05", url: "https://data.census.gov/table/ACSDP1Y2024.DP05?q=DP05" },
                 avgHHSize: { code: "Table AGV1", url: "https://www.census.gov/data/tables/2023/demo/families/cps-2023.html" },
-                disabilityStatus: { code: "S1810", url: "https://data.census.gov/table?q=S1810" },
-                medianIncome: { code: "B19013", url: "https://data.census.gov/table?q=B19013" },
-                collegeDegree: { code: "B15002", url: "https://data.census.gov/table?q=B15002" },
-                gender: { code: "DP05", url: "https://data.census.gov/table?q=DP05" }
+                disabilityStatus: { code: "S1810", url: "https://data.census.gov/table/ACSST1Y2024.S1810?q=S1810" },
+                medianIncome: { code: "B19013", url: "https://data.census.gov/table/ACSDT1Y2024.B19013?q=B19013" },
+                collegeDegree: { code: "B15002", url: "https://data.census.gov/table/ACSDT1Y2024.B15002?q=B15002" },
+                gender: { code: "DP05", url: "https://data.census.gov/table/ACSDP1Y2024.DP05?q=DP05" }
             },
             white: {
-                totalPop: { code: "B03002", url: "https://data.census.gov/table?q=B03002" },
+                totalPop: { code: "B03002", url: "https://data.census.gov/table/ACSDT1Y2024.B03002?q=B03002" },
                 shareUS: { code: "Table 5", url: "https://www.census.gov/data/tables/2023/demo/popproj/2023-summary-tables.html" },
-                medianAge: { code: "B01002H", url: "https://data.census.gov/table?q=B01002H" },
+                medianAge: { code: "B01002H", url: "https://data.census.gov/table/ACSDT1Y2024.B01002H?q=B01002H" },
                 avgHHSize: { code: "Table AGV1", url: "https://www.census.gov/data/tables/2023/demo/families/cps-2023.html" },
-                disabilityStatus: { code: "B18101H", url: "https://data.census.gov/table?q=B18101H" },
-                medianIncome: { code: "B19013H", url: "https://data.census.gov/table?q=B19013H" },
-                collegeDegree: { code: "B15002H", url: "https://data.census.gov/table?q=B15002H" },
-                gender: { code: "B01001H", url: "https://data.census.gov/table?q=B01001H" }
+                disabilityStatus: { code: "B18101H", url: "https://data.census.gov/table/ACSDT1Y2024.B18101H?q=B18101H" },
+                medianIncome: { code: "B19013H", url: "https://data.census.gov/table/ACSDT1Y2024.B19013H?q=B19013H" },
+                collegeDegree: { code: "B15002H", url: "https://data.census.gov/table/ACSDT1Y2024.B15002H?q=B15002H" },
+                gender: { code: "B01001H", url: "https://data.census.gov/table/ACSDT1Y2024.B01001H?q=B01001H" }
             },
             black: {
-                totalPop: { code: "B03002", url: "https://data.census.gov/table?q=B03002" },
+                totalPop: { code: "B03002", url: "https://data.census.gov/table/ACSDT1Y2024.B03002?q=B03002" },
                 shareUS: { code: "Table 5", url: "https://www.census.gov/data/tables/2023/demo/popproj/2023-summary-tables.html" },
-                medianAge: { code: "B01002B", url: "https://data.census.gov/table?q=B01002B" },
+                medianAge: { code: "B01002B", url: "https://data.census.gov/table/ACSDT1Y2024.B01002B?q=B01002B" },
                 avgHHSize: { code: "Table AGV1", url: "https://www.census.gov/data/tables/2023/demo/families/cps-2023.html" },
-                disabilityStatus: { code: "B18101B", url: "https://data.census.gov/table?q=B18101B" },
-                medianIncome: { code: "B19013B", url: "https://data.census.gov/table?q=B19013B" },
-                collegeDegree: { code: "B15002B", url: "https://data.census.gov/table?q=B15002B" },
-                gender: { code: "B01001B", url: "https://data.census.gov/table?q=B01001B" }
+                disabilityStatus: { code: "B18101B", url: "https://data.census.gov/table/ACSDT1Y2024.B18101B?q=B18101B" },
+                medianIncome: { code: "B19013B", url: "https://data.census.gov/table/ACSDT1Y2024.B19013B?q=B19013B" },
+                collegeDegree: { code: "B15002B", url: "https://data.census.gov/table/ACSDT1Y2024.B15002B?q=B15002B" },
+                gender: { code: "B01001B", url: "https://data.census.gov/table/ACSDT1Y2024.B01001B?q=B01001B" }
             },
             hispanic: {
-                totalPop: { code: "B03002", url: "https://data.census.gov/table?q=B03002" },
+                totalPop: { code: "B03002", url: "https://data.census.gov/table/ACSDT1Y2024.B03002?q=B03002" },
                 shareUS: { code: "Table 5", url: "https://www.census.gov/data/tables/2023/demo/popproj/2023-summary-tables.html" },
-                medianAge: { code: "B01002I", url: "https://data.census.gov/table?q=B01002I" },
+                medianAge: { code: "B01002I", url: "https://data.census.gov/table/ACSDT1Y2024.B01002I?q=B01002I" },
                 avgHHSize: { code: "Table AGV1", url: "https://www.census.gov/data/tables/2023/demo/families/cps-2023.html" },
-                disabilityStatus: { code: "B18101I", url: "https://data.census.gov/table?q=B18101I" },
-                medianIncome: { code: "B19013I", url: "https://data.census.gov/table?q=B19013I" },
-                collegeDegree: { code: "B15002I", url: "https://data.census.gov/table?q=B15002I" },
-                gender: { code: "B01001I", url: "https://data.census.gov/table?q=B01001I" }
+                disabilityStatus: { code: "B18101I", url: "https://data.census.gov/table/ACSDT1Y2024.B18101I?q=B18101I" },
+                medianIncome: { code: "B19013I", url: "https://data.census.gov/table/ACSDT1Y2024.B19013I?q=B19013I" },
+                collegeDegree: { code: "B15002I", url: "https://data.census.gov/table/ACSDT1Y2024.B15002I?q=B15002I" },
+                gender: { code: "B01001I", url: "https://data.census.gov/table/ACSDT1Y2024.B01001I?q=B01001I" }
             },
             asian: {
-                totalPop: { code: "B03002", url: "https://data.census.gov/table?q=B03002" },
+                totalPop: { code: "B03002", url: "https://data.census.gov/table/ACSDT1Y2024.B03002?q=B03002" },
                 shareUS: { code: "Table 5", url: "https://www.census.gov/data/tables/2023/demo/popproj/2023-summary-tables.html" },
-                medianAge: { code: "B01002D", url: "https://data.census.gov/table?q=B01002D" },
+                medianAge: { code: "B01002D", url: "https://data.census.gov/table/ACSDT1Y2024.B01002D?q=B01002D" },
                 avgHHSize: { code: "Table AGV1", url: "https://www.census.gov/data/tables/2023/demo/families/cps-2023.html" },
-                disabilityStatus: { code: "B18101D", url: "https://data.census.gov/table?q=B18101D" },
-                medianIncome: { code: "B19013D", url: "https://data.census.gov/table?q=B19013D" },
-                collegeDegree: { code: "B15002D", url: "https://data.census.gov/table?q=B15002D" },
-                gender: { code: "B01001D", url: "https://data.census.gov/table?q=B01001D" }
+                disabilityStatus: { code: "B18101D", url: "https://data.census.gov/table/ACSDT1Y2024.B18101D?q=B18101D" },
+                medianIncome: { code: "B19013D", url: "https://data.census.gov/table/ACSDT1Y2024.B19013D?q=B19013D" },
+                collegeDegree: { code: "B15002D", url: "https://data.census.gov/table/ACSDT1Y2024.B15002D?q=B15002D" },
+                gender: { code: "B01001D", url: "https://data.census.gov/table/ACSDT1Y2024.B01001D?q=B01001D" }
             },
             native: {
-                totalPop: { code: "B03002", url: "https://data.census.gov/table?q=B03002" },
+                totalPop: { code: "B03002", url: "https://data.census.gov/table/ACSDT1Y2024.B03002?q=B03002" },
                 shareUS: { code: "Table 5", url: "https://www.census.gov/data/tables/2023/demo/popproj/2023-summary-tables.html" },
-                medianAge: { code: "B01002C", url: "https://data.census.gov/table?q=B01002C" },
+                medianAge: { code: "B01002C", url: "https://data.census.gov/table/ACSDT1Y2024.B01002C?q=B01002C" },
                 avgHHSize: { code: "Table AGV1", url: "https://www.census.gov/data/tables/2023/demo/families/cps-2023.html" },
-                disabilityStatus: { code: "B18101C", url: "https://data.census.gov/table?q=B18101C" },
-                medianIncome: { code: "B19013C", url: "https://data.census.gov/table?q=B19013C" },
-                collegeDegree: { code: "B15002C", url: "https://data.census.gov/table?q=B15002C" },
-                gender: { code: "B01001C", url: "https://data.census.gov/table?q=B01001C" }
+                disabilityStatus: { code: "B18101C", url: "https://data.census.gov/table/ACSDT1Y2024.B18101C?q=B18101C" },
+                medianIncome: { code: "B19013C", url: "https://data.census.gov/table/ACSDT1Y2024.B19013C?q=B19013C" },
+                collegeDegree: { code: "B15002C", url: "https://data.census.gov/table/ACSDT1Y2024.B15002C?q=B15002C" },
+                gender: { code: "B01001C", url: "https://data.census.gov/table/ACSDT1Y2024.B01001C?q=B01001C" }
             },
             twomore: {
-                totalPop: { code: "B03002", url: "https://data.census.gov/table?q=B03002" },
+                totalPop: { code: "B03002", url: "https://data.census.gov/table/ACSDT1Y2024.B03002?q=B03002" },
                 shareUS: { code: "Table 5", url: "https://www.census.gov/data/tables/2023/demo/popproj/2023-summary-tables.html" },
-                medianAge: { code: "B01002G", url: "https://data.census.gov/table?q=B01002G" },
+                medianAge: { code: "B01002G", url: "https://data.census.gov/table/ACSDT1Y2024.B01002G?q=B01002G" },
                 avgHHSize: { code: "Table AGV1", url: "https://www.census.gov/data/tables/2023/demo/families/cps-2023.html" },
-                disabilityStatus: { code: "B18101G", url: "https://data.census.gov/table?q=B18101G" },
-                medianIncome: { code: "B19013G", url: "https://data.census.gov/table?q=B19013G" },
-                collegeDegree: { code: "B15002G", url: "https://data.census.gov/table?q=B15002G" },
-                gender: { code: "B01001G", url: "https://data.census.gov/table?q=B01001G" }
+                disabilityStatus: { code: "B18101G", url: "https://data.census.gov/table/ACSDT1Y2024.B18101G?q=B18101G" },
+                medianIncome: { code: "B19013G", url: "https://data.census.gov/table/ACSDT1Y2024.B19013G?q=B19013G" },
+                collegeDegree: { code: "B15002G", url: "https://data.census.gov/table/ACSDT1Y2024.B15002G?q=B15002G" },
+                gender: { code: "B01001G", url: "https://data.census.gov/table/ACSDT1Y2024.B01001G?q=B01001G" }
             },
             lgbtq: {
                 totalPop: { code: "Gallup 2025", url: "https://news.gallup.com/poll/702206/lgbtq-identification-holds.aspx" },
@@ -1435,15 +1435,17 @@
             }
             let mapObj = sourceMap[currentTab] && sourceMap[currentTab].totalPop ? sourceMap[currentTab].totalPop : { code: "B03002" };
             let tableCode = mapObj.code;
-            let linkUrl = `https://data.census.gov/table/ACSDT1Y${currentYear}.${tableCode}?q=${tableCode}&g=010XX00US$0400000&moe=false`;
+            let tablePrefix = tableCode.startsWith('DP') ? 'ACSDP1Y' : (tableCode.startsWith('S') ? 'ACSST1Y' : 'ACSDT1Y');
+            let linkUrl = `https://data.census.gov/table/${tablePrefix}${currentYear}.${tableCode}?q=${tableCode}&g=010XX00US$0400000&moe=false`;
             return `<a href="${linkUrl}" target="_blank" rel="noopener noreferrer" class="source-link">Census Table ${tableCode}</a>`;
         }
 
         function changeYear(year) {
             currentYear = year;
             let targetTable = sourceMap[currentTab] && sourceMap[currentTab].totalPop ? sourceMap[currentTab].totalPop.code : "B03002";
+            let tablePrefix = targetTable.startsWith('DP') ? 'ACSDP1Y' : (targetTable.startsWith('S') ? 'ACSST1Y' : 'ACSDT1Y');
             document.getElementById('portalLink').innerText = `data.census.gov (${year} ACS)`;
-            document.getElementById('portalLink').href = `https://data.census.gov/table?q=${targetTable}&g=0100000US&y=${year}`;
+            document.getElementById('portalLink').href = `https://data.census.gov/table/${tablePrefix}${year}.${targetTable}?q=${targetTable}`;
             renderTab();
         }
 
@@ -1453,8 +1455,9 @@
             document.getElementById(`tab-${tabKey}`).classList.add('active');
             
             let targetTable = sourceMap[currentTab] && sourceMap[currentTab].totalPop ? sourceMap[currentTab].totalPop.code : "B03002";
+            let tablePrefix = targetTable.startsWith('DP') ? 'ACSDP1Y' : (targetTable.startsWith('S') ? 'ACSST1Y' : 'ACSDT1Y');
             document.getElementById('portalLink').innerText = `data.census.gov (${currentYear} ACS)`;
-            document.getElementById('portalLink').href = `https://data.census.gov/table?q=${targetTable}&g=0100000US&y=${currentYear}`;
+            document.getElementById('portalLink').href = `https://data.census.gov/table/${tablePrefix}${currentYear}.${targetTable}?q=${targetTable}`;
 
             renderTab();
         }
@@ -1518,7 +1521,7 @@
                         <div class="relative h-64 sm:h-80 w-full flex items-center">
                             <canvas id="totalCompositionStackedBar"></canvas>
                         </div>
-                        <div class="text-right"><a href="https://data.census.gov/table?q=B03002" target="_blank" rel="noopener noreferrer" class="source-link">Census Table B03002</a></div>
+                        <div class="text-right"><a href="https://data.census.gov/table/ACSDT1Y2024.B03002?q=B03002" target="_blank" rel="noopener noreferrer" class="source-link">Census Table B03002</a></div>
                     </div>
 
                     <div class="card-box">
