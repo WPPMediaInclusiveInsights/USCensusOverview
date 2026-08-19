@@ -46,6 +46,9 @@
         .stat-label { font-size: 0.9rem; font-weight: 700; text-transform: uppercase; color: #475569; }
         .comp-subtext { font-size: 0.75rem; font-weight: 600; color: #64748B; margin-top: 0.25rem; line-height: 1.25; }
         
+        /* Specific override for foreign-born box contrast */
+        .bg-blue-600 .comp-subtext { color: #E2E8F0 !important; }
+
         /* Subtle Source Link Styling */
         .source-tag { display: block; font-size: 0.65rem; font-weight: 600; color: #94A3B8; margin-top: 0.25rem; letter-spacing: 0.02em;}
         .source-tag-link { color: #94A3B8; text-decoration: underline; transition: color 0.15s ease; }
@@ -109,8 +112,8 @@
                 </div>
                 
                 <!-- Dynamic 2024 Disclaimer -->
-                <div id="yearDisclaimer" class="mt-3 text-xs md:text-sm font-semibold text-indigo-800 bg-indigo-50 border border-indigo-200 p-3 rounded-lg text-center hidden">
-                    This dashboard is updated using the latest ACS 1 Year Survey. All data tables are from 2024 with the exceptons of tables AVG1, H3, Table 1, and Table 5, which are from 2023. These are indicated in the sources below each data point, and will be updated to most recent years when the US Census releases their latest version.
+                <div id="yearDisclaimer" class="mt-3 text-[0.65rem] md:text-xs italic font-semibold text-indigo-800 bg-indigo-50 border border-indigo-200 p-3 rounded-lg text-center hidden">
+                    This dashboard is updated using the latest ACS 1 Year Survey. All data tables are from 2024 with the exceptions of tables AVG1, H3, Table 1, and Table 5, which are from 2023. These are indicated in the sources below each data point, and will be updated to most recent year when the US Census releases their latest version.
                 </div>
             </div>
 
@@ -141,7 +144,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs md:text-sm">
                     <div class="bg-slate-50 p-3.5 rounded-lg border border-slate-200">
                         <span class="font-extrabold text-indigo-900 block mb-1">White (White, Non-Hispanic)</span>
-                        Individuals claiming origin from Europe, the Middle East, or North Africa, who do not identify as Hispanic or Latino.
+                        NHW refers to Non-Hispanic White. Individuals claiming origin from Europe, the Middle East, or North Africa, who do not identify as Hispanic or Latino.
                     </div>
                     <div class="bg-slate-50 p-3.5 rounded-lg border border-slate-200">
                         <span class="font-extrabold text-indigo-900 block mb-1">Black (Black or African American Only)</span>
@@ -192,10 +195,10 @@
         const exactSources = {
             total: {
                 totalPop: { id: "DP05", url: "https://data.census.gov/table?q=DP05" },
-                prevIncrease: { id: "DP05", url: "https://data.census.gov/table?q=DP05" },
+                prevIncrease: null,
                 multiculturalCount: { id: "B03002", url: "https://data.census.gov/table?q=B03002" },
-                prevChange: { id: "B03002", url: "https://data.census.gov/table?q=B03002" },
-                shareUS: { id: "Table 5" },
+                prevChange: null,
+                shareUS: null,
                 menPct: { id: "DP05", url: "https://data.census.gov/table?q=DP05" },
                 womenPct: { id: "DP05", url: "https://data.census.gov/table?q=DP05" },
                 lgbtqPct: { id: "Gallup" },
@@ -384,7 +387,7 @@
                 employmentRate: { id: "MRI-Simmons" },
                 collegeDegree: { id: "MRI-Simmons" },
                 spendingPower: { id: "Williams Institute" },
-                disabilityStatus: { id: "MRI-Simmons" },
+                disabilityStatus: { id: "American Progress", url: "https://www.americanprogress.org/article/how-the-disability-and-lgbtqi-communities-intersect/" },
                 state: { id: "Gallup", url: "https://news.gallup.com/poll/702206/lgbtq-identification-holds.aspx" },
                 maritalStatus: { id: "MRI-Simmons" },
                 parentalStatus: { id: "MRI-Simmons" }
@@ -401,7 +404,7 @@
                         genBreakout: { genZ: "21.4%", millennial: "27.1%", genX: "17.9%", boomer: "18.1%", silent: "15.5%" },
                         foreignBorn: "13.9%", usBorn: "86.1%", under18UsBorn: "94.5%", under18ForeignBorn: "5.5%",
                         ancestry: ["English (8.1%)", "German (5.0%)", "Irish (3.5%)", "Mexican (11.5%)", "Italian (2.1%)", "Asian Indian (1.5%)", "Chinese (1.4%)", "Filipino (1.0%)", "Cuban (0.9%)", "Puerto Rican (1.8%)"],
-                        avgHHSize: "2.51", avgKids: "0.55", multiGenHH: "7.9%", medianIncome: "$81,604", employmentRate: "84.8%", collegeDegree: "36.8%", spendingPower: "$20.4 Trillion", disabilityStatus: "13.6%",
+                        avgHHSize: "2.51", avgKids: "0.55", multiGenHH: "7.9%", medianIncome: "$81,604", employmentRate: "84.8%", collegeDegree: "36.8%", spendingPower: "$20.4 Trillion", disabilityStatus: "13.7%", disabilityUnder65: "7.9%",
                         states: [
                             { state: "California", pop: "39,431,263", share: "11.6%" }, { state: "Texas", pop: "31,290,831", share: "9.2%" }, { state: "Florida", pop: "23,372,215", share: "6.9%" }, { state: "New York", pop: "19,867,248", share: "5.8%" }, { state: "Pennsylvania", pop: "13,078,751", share: "3.8%" }, { state: "Illinois", pop: "12,710,158", share: "3.7%" }, { state: "Ohio", pop: "11,883,304", share: "3.5%" }, { state: "Georgia", pop: "11,180,878", share: "3.3%" }, { state: "North Carolina", pop: "11,046,024", share: "3.2%" }, { state: "Michigan", pop: "10,140,459", share: "3.0%" }
                         ]
@@ -411,7 +414,7 @@
                         genBreakout: { genZ: "17.1%", millennial: "25.8%", genX: "18.7%", boomer: "22.5%", silent: "15.9%" },
                         foreignBorn: "4.7%", usBorn: "95.3%", under18UsBorn: "98.9%", under18ForeignBorn: "1.1%",
                         ancestry: ["English (14.4%)", "German (8.8%)", "Irish (6.2%)", "Italian (3.7%)", "Polish (2.4%)", "French (1.8%)", "Scottish (1.5%)", "Norwegian (1.1%)", "Dutch (0.9%)", "Swedish (0.8%)"],
-                        avgHHSize: "2.36", avgKids: "0.53", multiGenHH: "4.8%", medianIncome: "$87,572", employmentRate: "62.2%", collegeDegree: "68.5%", spendingPower: "$15.8 Trillion", disabilityStatus: "14.7%",
+                        avgHHSize: "2.36", avgKids: "0.53", multiGenHH: "4.8%", medianIncome: "$87,572", employmentRate: "62.2%", collegeDegree: "68.5%", spendingPower: "$15.8 Trillion", disabilityStatus: "14.9%", disabilityUnder65: "7.7%",
                         states: [
                             { state: "Texas", pop: "11,821,108", share: "37.8%" }, { state: "California", pop: "12,842,211", share: "32.6%" }, { state: "Florida", pop: "11,469,118", share: "49.1%" }, { state: "New York", pop: "10,317,249", share: "51.9%" }, { state: "Pennsylvania", pop: "9,400,332", share: "71.9%" }, { state: "Ohio", pop: "8,907,052", share: "75.0%" }, { state: "Illinois", pop: "7,256,503", share: "57.1%" }, { state: "Michigan", pop: "7,264,560", share: "71.6%" }, { state: "North Carolina", pop: "6,514,175", share: "59.0%" }, { state: "Georgia", pop: "5,367,827", share: "48.0%" }
                         ]
@@ -421,7 +424,7 @@
                         genBreakout: { genZ: "21.6%", millennial: "27.5%", genX: "18.2%", boomer: "18.1%", silent: "14.6%" },
                         foreignBorn: "11.4%", usBorn: "88.6%", under18UsBorn: "96.0%", under18ForeignBorn: "4.0%",
                         ancestry: ["African (64.4%)", "American (11.1%)", "Jamaican (10.7%)", "Haitian (10.4%)", "Nigerian (6.1%)", "Puerto Rican (3.8%)", "Dominican (3.7%)", "Ethiopian (3.2%)", "Ghanaian (1.9%)", "Somali (1.4%)"],
-                        avgHHSize: "2.42", avgKids: "0.62", multiGenHH: "10.3%", medianIncome: "$56,706", employmentRate: "64.0%", collegeDegree: "58.2%", spendingPower: "$1.8 Trillion", disabilityStatus: "17.8%",
+                        avgHHSize: "2.42", avgKids: "0.62", multiGenHH: "10.3%", medianIncome: "$56,706", employmentRate: "64.0%", collegeDegree: "58.2%", spendingPower: "$1.8 Trillion", disabilityStatus: "15.3%", disabilityUnder65: "10.1%",
                         states: [
                             { state: "Texas", pop: "3,862,943", share: "12.3%" }, { state: "Florida", pop: "3,451,885", share: "14.8%" }, { state: "Georgia", pop: "3,421,874", share: "30.6%" }, { state: "New York", pop: "2,828,127", share: "14.2%" }, { state: "North Carolina", pop: "2,189,327", share: "19.8%" }, { state: "California", pop: "2,110,721", share: "5.4%" }, { state: "Maryland", pop: "1,825,122", share: "29.1%" }, { state: "Illinois", pop: "1,679,701", share: "13.2%" }, { state: "Virginia", pop: "1,605,505", share: "18.2%" }, { state: "Ohio", pop: "1,444,642", share: "12.2%" }
                         ]
@@ -431,7 +434,7 @@
                         genBreakout: { genZ: "26.7%", millennial: "29.6%", genX: "19.5%", boomer: "14.1%", silent: "10.1%" },
                         foreignBorn: "43.6%", usBorn: "56.4%", under18UsBorn: "92.0%", under18ForeignBorn: "8.0%",
                         ancestry: ["Mexican (57.3%)", "Puerto Rican (9.0%)", "Salvadoran (4.1%)", "Cuban (4.3%)", "Dominican (3.7%)", "Guatemalan (3.2%)", "Spanish (3.0%)", "Colombian (2.6%)", "Honduran (2.1%)", "Ecuadorian (1.5%)"],
-                        avgHHSize: "3.15", avgKids: "0.87", multiGenHH: "13.0%", medianIncome: "$72,574", employmentRate: "69.0%", collegeDegree: "45.7%", spendingPower: "$3.6 - $4.1 Trillion", disabilityStatus: "8.3%",
+                        avgHHSize: "3.15", avgKids: "0.87", multiGenHH: "13.0%", medianIncome: "$72,574", employmentRate: "69.0%", collegeDegree: "45.7%", spendingPower: "$3.6 - $4.1 Trillion", disabilityStatus: "10.8%", disabilityUnder65: "7.6%",
                         states: [
                             { state: "California", pop: "16,069,214", share: "40.8%" }, { state: "Texas", pop: "12,602,305", share: "40.3%" }, { state: "Florida", pop: "6,706,088", share: "28.7%" }, { state: "New York", pop: "4,019,288", share: "20.2%" }, { state: "Puerto Rico", pop: "3,167,325", share: "98.9%" }, { state: "Illinois", pop: "2,462,768", share: "19.4%" }, { state: "Arizona", pop: "2,435,661", share: "32.1%" }, { state: "New Jersey", pop: "2,229,464", share: "23.5%" }, { state: "Colorado", pop: "1,382,948", share: "23.2%" }, { state: "North Carolina", pop: "1,324,570", share: "12.0%" }
                         ]
@@ -441,7 +444,7 @@
                         genBreakout: { genZ: "18.2%", millennial: "31.2%", genX: "21.6%", boomer: "18.3%", silent: "10.7%" },
                         foreignBorn: "63.4%", usBorn: "36.6%", under18UsBorn: "82.0%", under18ForeignBorn: "18.0%",
                         ancestry: ["Asian Indian (24.3%)", "Chinese (21.4%)", "Filipino (15.5%)", "Vietnamese (9.4%)", "Korean (7.5%)", "Pakistani (3.0%)", "Japanese (3.6%)", "Hmong (1.7%)", "Bangladeshi (1.5%)", "Taiwanese (1.4%)"],
-                        avgHHSize: "2.83", avgKids: "0.61", multiGenHH: "13.4%", medianIncome: "$117,289", employmentRate: "67.7%", collegeDegree: "75.6%", spendingPower: "$1.9 Trillion", disabilityStatus: "8.6%",
+                        avgHHSize: "2.83", avgKids: "0.61", multiGenHH: "13.4%", medianIncome: "$117,289", employmentRate: "67.7%", collegeDegree: "75.6%", spendingPower: "$1.9 Trillion", disabilityStatus: "8.6%", disabilityUnder65: "4.2%",
                         states: [
                             { state: "California", pop: "6,349,574", share: "16.1%" }, { state: "Texas", pop: "1,917,758", share: "6.1%" }, { state: "New York", pop: "1,893,851", share: "9.5%" }, { state: "New Jersey", pop: "1,013,268", share: "10.7%" }, { state: "Washington", pop: "852,985", share: "10.7%" }, { state: "Illinois", pop: "812,604", share: "6.4%" }, { state: "Florida", pop: "722,622", share: "3.1%" }, { state: "Virginia", pop: "632,236", share: "7.2%" }, { state: "Massachusetts", pop: "551,579", share: "7.7%" }, { state: "Georgia", pop: "547,463", share: "4.9%" }
                         ]
@@ -451,7 +454,7 @@
                         genBreakout: { genZ: "23.8%", millennial: "26.4%", genX: "19.5%", boomer: "18.2%", silent: "12.1%" },
                         foreignBorn: "12.1%", usBorn: "87.9%", under18UsBorn: "95.1%", under18ForeignBorn: "4.9%",
                         ancestry: ["Mexican American Indian (17.1%)", "Navajo (10.2%)", "Central American Indian (9.8%)", "Cherokee (7.5%)", "Sioux (3.1%)", "Chippewa (2.7%)", "Choctaw (2.8%)", "Apache (2.3%)", "Lumbee (1.8%)", "Pueblo (1.5%)"],
-                        avgHHSize: "2.71", avgKids: "0.69", multiGenHH: "12.5%", medianIncome: "$63,627", employmentRate: "63.5%", collegeDegree: "47.1%", spendingPower: "$185 Billion", disabilityStatus: "12.5%",
+                        avgHHSize: "2.71", avgKids: "0.69", multiGenHH: "12.5%", medianIncome: "$63,627", employmentRate: "63.5%", collegeDegree: "47.1%", spendingPower: "$185 Billion", disabilityStatus: "16.1%", disabilityUnder65: "11.2%",
                         states: [
                             { state: "California", pop: "560,852", share: "1.4%" }, { state: "Arizona", pop: "304,625", share: "4.0%" }, { state: "Oklahoma", pop: "290,584", share: "7.1%" }, { state: "Texas", pop: "268,376", share: "0.9%" }, { state: "New Mexico", pop: "205,793", share: "9.7%" }, { state: "North Carolina", pop: "129,569", share: "1.2%" }, { state: "New York", pop: "118,866", share: "0.6%" }, { state: "Illinois", pop: "105,434", share: "0.8%" }, { state: "Alaska", pop: "104,023", share: "14.1%" }, { state: "Florida", pop: "100,235", share: "0.4%" }
                         ]
@@ -461,7 +464,7 @@
                         genBreakout: { genZ: "34.1%", millennial: "28.5%", genX: "16.8%", boomer: "13.2%", silent: "7.4%" },
                         foreignBorn: "24.8%", usBorn: "75.2%", under18UsBorn: "94.5%", under18ForeignBorn: "5.5%",
                         ancestry: ["White & Some Other Race (68.3%)", "White & Black (10.2%)", "White & Native American (8.3%)", "White & Asian (8.0%)", "Black & Some Other Race (3.2%)", "Black & AAPI (0.8%)", "Native American & Some Other Race (0.1%)", "AAPI & Some Other Race (0.6%)", "Tri-racial (5.7%)", "Multiracial Four+ (0.7%)"],
-                        avgHHSize: "2.71", avgKids: "0.69", multiGenHH: "9.1%", medianIncome: "$77,248", employmentRate: "68.1%", collegeDegree: "56.1%", spendingPower: "$270 Billion", disabilityStatus: "9.1%",
+                        avgHHSize: "2.71", avgKids: "0.69", multiGenHH: "9.1%", medianIncome: "$77,248", employmentRate: "68.1%", collegeDegree: "56.1%", spendingPower: "$270 Billion", disabilityStatus: "11.7%", disabilityUnder65: "8.2%",
                         states: [
                             { state: "California", pop: "7,454,033", share: "19.0%" }, { state: "Texas", pop: "7,059,981", share: "23.9%" }, { state: "Florida", pop: "4,165,040", share: "19.1%" }, { state: "New York", pop: "2,120,205", share: "10.7%" }, { state: "Arizona", pop: "1,462,148", share: "20.1%" }, { state: "Illinois", pop: "1,406,470", share: "11.1%" }, { state: "Puerto Rico", pop: "1,167,170", share: "35.8%" }, { state: "New Jersey", pop: "1,120,232", share: "12.1%" }, { state: "Washington", pop: "956,667", share: "12.4%" }, { state: "Georgia", pop: "945,521", share: "8.8%" }
                         ]
@@ -473,7 +476,7 @@
                         foreignBorn: "11.2%", usBorn: "88.8%", under18UsBorn: "96.2%", under18ForeignBorn: "3.8%",
                         raceEthnicityPie: { white: "51.2%", hispanic: "22.4%", black: "13.1%", asian: "5.8%", multiracial: "6.5%" },
                         avgHHSize: "2.21", avgKids: "0.42", multiGenHH: "3.1%", maritalStatus: "28.4% Married / 14.2% Domestic Partner", parentalStatus: "18.2% Raising Children under 18",
-                        medianIncome: "$74,065", employmentRate: "69.8%", collegeDegree: "63.6%", spendingPower: "$1.4 Trillion", disabilityStatus: "21.4%", growthFrom2010: "+112% increase in self-identification",
+                        medianIncome: "$74,065", employmentRate: "69.8%", collegeDegree: "63.6%", spendingPower: "$1.4 Trillion", disabilityStatus: "48.0%", disabilityUnder65: "N/A", growthFrom2010: "+112% increase in self-identification",
                         states: [
                             { state: "California", pop: "3,120,000", share: "8.0%" }, { state: "Texas", pop: "2,150,000", share: "7.1%" }, { state: "Florida", pop: "1,580,000", share: "7.0%" }, { state: "New York", pop: "1,550,000", share: "7.9%" }, { state: "Illinois", pop: "920,000", share: "7.3%" }, { state: "Ohio", pop: "810,000", share: "6.9%" }, { state: "Georgia", pop: "780,000", share: "7.1%" }, { state: "Pennsylvania", pop: "760,000", share: "5.9%" }, { state: "North Carolina", pop: "710,000", share: "6.6%" }, { state: "Washington", pop: "620,000", share: "7.9%" }
                         ]
@@ -489,15 +492,15 @@
                         genBreakout: { genZ: "21.7%", millennial: "27.0%", genX: "18.0%", boomer: "18.3%", silent: "15.0%" },
                         foreignBorn: "13.9%", usBorn: "86.1%", under18UsBorn: "94.5%", under18ForeignBorn: "5.5%",
                         ancestry: ["English (14.3%)", "German (12.0%)", "Irish (9.7%)", "Mexican (11.0%)", "African (8.2%)", "Italian (5.2%)", "Polish (2.8%)", "French (2.2%)", "Chinese (1.5%)", "Indian (1.3%)"],
-                        avgHHSize: "2.51", avgKids: "0.55", multiGenHH: "7.7%", medianIncome: "$74,580", employmentRate: "61.1%", collegeDegree: "34.3%", spendingPower: "$18.5 Trillion", disabilityStatus: "13.2%",
+                        avgHHSize: "2.51", avgKids: "0.55", multiGenHH: "7.7%", medianIncome: "$74,580", employmentRate: "61.1%", collegeDegree: "34.3%", spendingPower: "$18.5 Trillion", disabilityStatus: "13.7%", disabilityUnder65: "7.9%",
                         states: [{ state: "California", pop: "38,900,000", share: "11.4%" }, { state: "Texas", pop: "30,100,000", share: "8.9%" }, { state: "Florida", pop: "22,300,000", share: "6.6%" }, { state: "New York", pop: "19,500,000", share: "5.7%" }, { state: "Pennsylvania", pop: "12,900,000", share: "3.8%" }, { state: "Illinois", pop: "12,500,000", share: "3.7%" }, { state: "Ohio", pop: "11,750,000", share: "3.5%" }, { state: "Georgia", pop: "10,950,000", share: "3.2%" }, { state: "North Carolina", pop: "10,700,000", share: "3.1%" }, { state: "Michigan", pop: "10,020,000", share: "2.9%" }]
                     },
                     white: {
                         name: "White (White, Non-Hispanic)", totalPop: "192,753,887", shareUS: "58.1%", contribGrowth: "-41%", menPct: "49.5%", womenPct: "50.5%", nonBinaryPct: "N/A", lgbtqPct: "6.0%", medianAge: "43.5 yrs",
                         genBreakout: { genZ: "17.1%", millennial: "25.1%", genX: "19.0%", boomer: "23.8%", silent: "15.0%" },
-                        foreignBorn: "4.7%", usBorn: "95.3%", under18UsBorn: "95.4%", under18ForeignBorn: "4.6%",
+                        foreignBorn: "4.7%", usBorn: "95.3%", under18UsBorn: "98.9%", under18ForeignBorn: "1.1%",
                         ancestry: ["German (20.0%)", "Irish (15.5%)", "English (15.1%)", "Italian (8.3%)", "Polish (4.2%)", "French (3.3%)", "Scottish (2.9%)", "Norwegian (2.0%)", "Dutch (1.5%)", "Swedish (1.4%)"],
-                        avgHHSize: "2.36", avgKids: "0.53", multiGenHH: "4.8%", medianIncome: "$80,404", employmentRate: "62.0%", collegeDegree: "67.8%", spendingPower: "$14.9 Trillion", disabilityStatus: "13.9%",
+                        avgHHSize: "2.36", avgKids: "0.53", multiGenHH: "4.8%", medianIncome: "$80,404", employmentRate: "62.0%", collegeDegree: "67.8%", spendingPower: "$14.9 Trillion", disabilityStatus: "14.9%", disabilityUnder65: "7.7%",
                         states: [{ state: "California", pop: "12,842,211", share: "32.6%" }, { state: "Texas", pop: "11,821,108", share: "38.8%" }, { state: "Florida", pop: "11,469,118", share: "49.1%" }, { state: "New York", pop: "10,317,249", share: "51.9%" }, { state: "Pennsylvania", pop: "9,400,332", share: "71.9%" }, { state: "Ohio", pop: "8,907,052", share: "75.0%" }, { state: "Illinois", pop: "7,256,503", share: "57.1%" }, { state: "Michigan", pop: "7,264,560", share: "71.6%" }, { state: "North Carolina", pop: "6,514,175", share: "59.0%" }, { state: "Georgia", pop: "5,367,827", share: "48.0%" }]
                     },
                     black: {
@@ -505,7 +508,7 @@
                         genBreakout: { genZ: "21.6%", millennial: "27.5%", genX: "18.2%", boomer: "18.1%", silent: "14.6%" },
                         foreignBorn: "11.4%", usBorn: "88.6%", under18UsBorn: "96.0%", under18ForeignBorn: "4.0%",
                         ancestry: ["African (64.4%)", "American (11.1%)", "Jamaican (10.7%)", "Haitian (10.4%)", "Nigerian (6.1%)", "Puerto Rican (3.8%)", "Dominican (3.7%)", "Ethiopian (3.2%)", "Ghanaian (1.9%)", "Somali (1.4%)"],
-                        avgHHSize: "2.42", avgKids: "0.62", multiGenHH: "10.3%", medianIncome: "$56,706", employmentRate: "64.0%", collegeDegree: "58.2%", spendingPower: "$1.68 Trillion", disabilityStatus: "17.8%",
+                        avgHHSize: "2.42", avgKids: "0.62", multiGenHH: "10.3%", medianIncome: "$56,706", employmentRate: "64.0%", collegeDegree: "58.2%", spendingPower: "$1.68 Trillion", disabilityStatus: "15.3%", disabilityUnder65: "10.1%",
                         states: [{ state: "Texas", pop: "3,862,943", share: "12.3%" }, { state: "Florida", pop: "3,451,885", share: "14.8%" }, { state: "Georgia", pop: "3,421,874", share: "30.6%" }, { state: "New York", pop: "2,828,127", share: "14.2%" }, { state: "North Carolina", pop: "2,189,327", share: "19.8%" }, { state: "California", pop: "2,110,721", share: "5.4%" }, { state: "Maryland", pop: "1,825,122", share: "29.1%" }, { state: "Illinois", pop: "1,679,701", share: "13.2%" }, { state: "Virginia", pop: "1,605,505", share: "18.2%" }, { state: "Ohio", pop: "1,444,642", share: "12.2%" }]
                     },
                     hispanic: {
@@ -513,7 +516,7 @@
                         genBreakout: { genZ: "26.7%", millennial: "29.6%", genX: "19.5%", boomer: "14.1%", silent: "10.1%" },
                         foreignBorn: "43.6%", usBorn: "56.4%", under18UsBorn: "92.0%", under18ForeignBorn: "8.0%",
                         ancestry: ["Mexican (57.3%)", "Puerto Rican (9.0%)", "Salvadoran (4.1%)", "Cuban (4.3%)", "Dominican (3.7%)", "Guatemalan (3.2%)", "Spanish (3.0%)", "Colombian (2.6%)", "Honduran (2.1%)", "Ecuadorian (1.5%)"],
-                        avgHHSize: "3.15", avgKids: "0.87", multiGenHH: "13.0%", medianIncome: "$72,574", employmentRate: "69.0%", collegeDegree: "45.7%", spendingPower: "$2.08 Trillion", disabilityStatus: "10.8%",
+                        avgHHSize: "3.15", avgKids: "0.87", multiGenHH: "13.0%", medianIncome: "$72,574", employmentRate: "69.0%", collegeDegree: "45.7%", spendingPower: "$2.08 Trillion", disabilityStatus: "10.8%", disabilityUnder65: "7.6%",
                         states: [{ state: "California", pop: "16,069,214", share: "40.8%" }, { state: "Texas", pop: "12,602,305", share: "40.3%" }, { state: "Florida", pop: "6,706,088", share: "28.7%" }, { state: "New York", pop: "4,019,288", share: "20.2%" }, { state: "Puerto Rico", pop: "3,167,325", share: "98.9%" }, { state: "Illinois", pop: "2,462,768", share: "19.4%" }, { state: "Arizona", pop: "2,435,661", share: "32.1%" }, { state: "New Jersey", pop: "2,229,464", share: "23.5%" }, { state: "Colorado", pop: "1,382,948", share: "23.2%" }, { state: "North Carolina", pop: "1,324,570", share: "12.0%" }]
                     },
                     asian: {
@@ -521,7 +524,7 @@
                         genBreakout: { genZ: "18.2%", millennial: "31.2%", genX: "21.6%", boomer: "18.3%", silent: "10.7%" },
                         foreignBorn: "63.4%", usBorn: "36.6%", under18UsBorn: "82.0%", under18ForeignBorn: "18.0%",
                         ancestry: ["Asian Indian (24.3%)", "Chinese (21.4%)", "Filipino (15.5%)", "Vietnamese (9.4%)", "Korean (7.5%)", "Pakistani (3.0%)", "Japanese (3.6%)", "Hmong (1.7%)", "Bangladeshi (1.5%)", "Taiwanese (1.4%)"],
-                        avgHHSize: "2.83", avgKids: "0.61", multiGenHH: "13.4%", medianIncome: "$117,289", employmentRate: "67.7%", collegeDegree: "75.6%", spendingPower: "$1.39 Trillion", disabilityStatus: "8.6%",
+                        avgHHSize: "2.83", avgKids: "0.61", multiGenHH: "13.4%", medianIncome: "$117,289", employmentRate: "67.7%", collegeDegree: "75.6%", spendingPower: "$1.39 Trillion", disabilityStatus: "8.6%", disabilityUnder65: "4.2%",
                         states: [{ state: "California", pop: "6,349,574", share: "16.1%" }, { state: "Texas", pop: "1,917,758", share: "6.1%" }, { state: "New York", pop: "1,893,851", share: "9.5%" }, { state: "New Jersey", pop: "1,013,268", share: "10.7%" }, { state: "Washington", pop: "852,985", share: "10.7%" }, { state: "Illinois", pop: "812,604", share: "6.4%" }, { state: "Florida", pop: "722,622", share: "3.1%" }, { state: "Virginia", pop: "632,236", share: "7.2%" }, { state: "Massachusetts", pop: "551,579", share: "7.7%" }, { state: "Georgia", pop: "547,463", share: "4.9%" }]
                     },
                     native: {
@@ -529,7 +532,7 @@
                         genBreakout: { genZ: "23.8%", millennial: "26.4%", genX: "19.5%", boomer: "18.2%", silent: "12.1%" },
                         foreignBorn: "12.1%", usBorn: "87.9%", under18UsBorn: "95.1%", under18ForeignBorn: "4.9%",
                         ancestry: ["Mexican American Indian (17.1%)", "Navajo (10.2%)", "Central American Indian (9.8%)", "Cherokee (7.5%)", "Sioux (3.1%)", "Chippewa (2.7%)", "Choctaw (2.8%)", "Apache (2.3%)", "Lumbee (1.8%)", "Pueblo (1.5%)"],
-                        avgHHSize: "2.71", avgKids: "0.69", multiGenHH: "12.5%", medianIncome: "$63,627", employmentRate: "63.5%", collegeDegree: "47.1%", spendingPower: "Data Unavailable", disabilityStatus: "12.5%",
+                        avgHHSize: "2.71", avgKids: "0.69", multiGenHH: "12.5%", medianIncome: "$63,627", employmentRate: "63.5%", collegeDegree: "47.1%", spendingPower: "Data Unavailable", disabilityStatus: "16.1%", disabilityUnder65: "11.2%",
                         states: [{ state: "California", pop: "560,852", share: "1.4%" }, { state: "Arizona", pop: "304,625", share: "4.0%" }, { state: "Oklahoma", pop: "290,584", share: "7.1%" }, { state: "Texas", pop: "268,376", share: "0.9%" }, { state: "New Mexico", pop: "205,793", share: "9.7%" }, { state: "North Carolina", pop: "129,569", share: "1.2%" }, { state: "New York", pop: "118,866", share: "0.6%" }, { state: "Illinois", pop: "105,434", share: "0.8%" }, { state: "Alaska", pop: "104,023", share: "14.1%" }, { state: "Florida", pop: "100,235", share: "0.4%" }]
                     },
                     twomore: {
@@ -537,7 +540,7 @@
                         genBreakout: { genZ: "34.1%", millennial: "28.5%", genX: "16.8%", boomer: "13.2%", silent: "7.4%" },
                         foreignBorn: "24.8%", usBorn: "75.2%", under18UsBorn: "94.5%", under18ForeignBorn: "5.5%",
                         ancestry: ["White & Some Other Race (68.3%)", "White & Black (10.2%)", "White & Native American (8.3%)", "White & Asian (8.0%)", "Black & Some Other Race (3.2%)", "Black & AAPI (0.8%)", "Native American & Some Other Race (0.1%)", "AAPI & Some Other Race (0.6%)", "Tri-racial (5.7%)", "Multiracial Four+ (0.7%)"],
-                        avgHHSize: "2.71", avgKids: "0.69", multiGenHH: "9.1%", medianIncome: "$77,248", employmentRate: "68.1%", collegeDegree: "56.1%", spendingPower: "Data Unavailable", disabilityStatus: "9.1%",
+                        avgHHSize: "2.71", avgKids: "0.69", multiGenHH: "9.1%", medianIncome: "$77,248", employmentRate: "68.1%", collegeDegree: "56.1%", spendingPower: "Data Unavailable", disabilityStatus: "11.7%", disabilityUnder65: "8.2%",
                         states: [{ state: "California", pop: "7,454,033", share: "19.0%" }, { state: "Texas", pop: "7,059,981", share: "23.9%" }, { state: "Florida", pop: "4,165,040", share: "19.1%" }, { state: "New York", pop: "2,120,205", share: "10.7%" }, { state: "Arizona", pop: "1,462,148", share: "20.1%" }, { state: "Illinois", pop: "1,406,470", share: "11.1%" }, { state: "Puerto Rico", pop: "1,167,170", share: "35.8%" }, { state: "New Jersey", pop: "1,120,232", share: "12.1%" }, { state: "Washington", pop: "956,667", share: "12.4%" }, { state: "Georgia", pop: "945,521", share: "8.8%" }]
                     },
                     lgbtq: {
@@ -547,7 +550,7 @@
                         foreignBorn: "10.8%", usBorn: "89.0%", under18UsBorn: "96.2%", under18ForeignBorn: "3.8%",
                         raceEthnicityPie: { white: "53.5%", hispanic: "21.0%", black: "12.8%", asian: "5.5%", multiracial: "6.0%" },
                         avgHHSize: "2.25", avgKids: "0.45", multiGenHH: "2.8%", maritalStatus: "26.8% Married / 13.5% Domestic Partner", parentalStatus: "17.5% Raising Children under 18",
-                        medianIncome: "$74,065", employmentRate: "66.8%", collegeDegree: "63.6%", spendingPower: "$1.22 Trillion", disabilityStatus: "20.1%", growthFrom2010: "+91% increase in self-identification",
+                        medianIncome: "$74,065", employmentRate: "66.8%", collegeDegree: "63.6%", spendingPower: "$1.22 Trillion", disabilityStatus: "48.0%", disabilityUnder65: "N/A", growthFrom2010: "+91% increase in self-identification",
                         states: [{ state: "California", pop: "2,880,000", share: "7.4%" }, { state: "Texas", pop: "1,950,000", share: "6.6%" }, { state: "Florida", pop: "1,420,000", share: "6.5%" }, { state: "New York", pop: "1,420,000", share: "7.3%" }, { state: "Illinois", pop: "850,000", share: "6.9%" }, { state: "Ohio", pop: "740,000", share: "6.3%" }, { state: "Georgia", pop: "710,000", share: "6.6%" }, { state: "Pennsylvania", pop: "690,000", share: "5.4%" }, { state: "North Carolina", pop: "640,000", share: "6.1%" }, { state: "Washington", pop: "550,000", share: "7.7%" }]
                     }
                 }
@@ -561,7 +564,7 @@
                         genBreakout: { genZ: "21.5%", millennial: "22.4%", genX: "20.1%", boomer: "21.1%", silent: "14.9%" },
                         foreignBorn: "13.6%", usBorn: "86.4%", under18UsBorn: "94.5%", under18ForeignBorn: "5.5%",
                         ancestry: ["English (14.7%)", "German (12.5%)", "Irish (10.0%)", "Mexican (10.8%)", "African (8.4%)", "Italian (5.4%)", "Polish (3.0%)", "French (2.3%)", "Chinese (1.4%)", "Indian (1.2%)"],
-                        avgHHSize: "2.54", avgKids: "0.55", multiGenHH: "7.2%", medianIncome: "$70,784", employmentRate: "60.2%", collegeDegree: "32.5%", spendingPower: "$18.5 Trillion", disabilityStatus: "12.8%",
+                        avgHHSize: "2.54", avgKids: "0.55", multiGenHH: "7.2%", medianIncome: "$70,784", employmentRate: "60.2%", collegeDegree: "32.5%", spendingPower: "$18.5 Trillion", disabilityStatus: "12.8%", disabilityUnder65: "7.5%",
                         states: [{ state: "California", pop: "38,700,000", share: "11.5%" }, { state: "Texas", pop: "29,500,000", share: "8.8%" }, { state: "Florida", pop: "21,780,000", share: "6.5%" }, { state: "New York", pop: "19,400,000", share: "5.8%" }, { state: "Pennsylvania", pop: "12,800,000", share: "3.8%" }, { state: "Illinois", pop: "12,400,000", share: "3.7%" }, { state: "Ohio", pop: "11,700,000", share: "3.5%" }, { state: "Georgia", pop: "10,800,000", share: "3.2%" }, { state: "North Carolina", pop: "10,500,000", share: "3.1%" }, { state: "Michigan", pop: "9,980,000", share: "3.0%" }]
                     },
                     white: {
@@ -569,7 +572,7 @@
                         genBreakout: { genZ: "17.8%", millennial: "19.9%", genX: "20.2%", boomer: "25.4%", silent: "16.7%" },
                         foreignBorn: "4.5%", usBorn: "95.5%", under18UsBorn: "95.4%", under18ForeignBorn: "4.6%",
                         ancestry: ["German (20.5%)", "Irish (16.0%)", "English (15.5%)", "Italian (8.5%)", "Polish (4.4%)", "French (3.4%)", "Scottish (3.0%)", "Norwegian (2.1%)", "Dutch (1.6%)", "Swedish (1.5%)"],
-                        avgHHSize: "2.36", avgKids: "0.53", multiGenHH: "4.8%", medianIncome: "$80,404", employmentRate: "62.0%", collegeDegree: "67.8%", spendingPower: "$14.9 Trillion", disabilityStatus: "13.5%",
+                        avgHHSize: "2.36", avgKids: "0.53", multiGenHH: "4.8%", medianIncome: "$80,404", employmentRate: "62.0%", collegeDegree: "67.8%", spendingPower: "$14.9 Trillion", disabilityStatus: "13.5%", disabilityUnder65: "7.0%",
                         states: [{ state: "California", pop: "12,842,211", share: "32.6%" }, { state: "Texas", pop: "11,821,108", share: "38.8%" }, { state: "Florida", pop: "11,469,118", share: "49.1%" }, { state: "New York", pop: "10,317,249", share: "51.9%" }, { state: "Pennsylvania", pop: "9,400,332", share: "71.9%" }, { state: "Ohio", pop: "8,907,052", share: "75.0%" }, { state: "Illinois", pop: "7,256,503", share: "57.1%" }, { state: "Michigan", pop: "7,264,560", share: "71.6%" }, { state: "North Carolina", pop: "6,514,175", share: "59.0%" }, { state: "Georgia", pop: "5,367,827", share: "48.0%" }]
                     },
                     black: {
@@ -577,7 +580,7 @@
                         genBreakout: { genZ: "21.6%", millennial: "27.5%", genX: "18.2%", boomer: "18.1%", silent: "14.6%" },
                         foreignBorn: "11.4%", usBorn: "88.6%", under18UsBorn: "96.0%", under18ForeignBorn: "4.0%",
                         ancestry: ["African (64.4%)", "American (11.1%)", "Jamaican (10.7%)", "Haitian (10.4%)", "Nigerian (6.1%)", "Puerto Rican (3.8%)", "Dominican (3.7%)", "Ethiopian (3.2%)", "Ghanaian (1.9%)", "Somali (1.4%)"],
-                        avgHHSize: "2.42", avgKids: "0.62", multiGenHH: "10.3%", medianIncome: "$56,706", employmentRate: "64.0%", collegeDegree: "58.2%", spendingPower: "$1.68 Trillion", disabilityStatus: "17.8%",
+                        avgHHSize: "2.42", avgKids: "0.62", multiGenHH: "10.3%", medianIncome: "$56,706", employmentRate: "64.0%", collegeDegree: "58.2%", spendingPower: "$1.68 Trillion", disabilityStatus: "17.8%", disabilityUnder65: "9.5%",
                         states: [{ state: "Texas", pop: "3,862,943", share: "12.3%" }, { state: "Florida", pop: "3,451,885", share: "14.8%" }, { state: "Georgia", pop: "3,421,874", share: "30.6%" }, { state: "New York", pop: "2,828,127", share: "14.2%" }, { state: "North Carolina", pop: "2,189,327", share: "19.8%" }, { state: "California", pop: "2,110,721", share: "5.4%" }, { state: "Maryland", pop: "1,825,122", share: "29.1%" }, { state: "Illinois", pop: "1,679,701", share: "13.2%" }, { state: "Virginia", pop: "1,605,505", share: "18.2%" }, { state: "Ohio", pop: "1,444,642", share: "12.2%" }]
                     },
                     hispanic: {
@@ -585,7 +588,7 @@
                         genBreakout: { genZ: "26.7%", millennial: "29.6%", genX: "19.5%", boomer: "14.1%", silent: "10.1%" },
                         foreignBorn: "43.6%", usBorn: "56.4%", under18UsBorn: "92.0%", under18ForeignBorn: "8.0%",
                         ancestry: ["Mexican (57.3%)", "Puerto Rican (9.0%)", "Salvadoran (4.1%)", "Cuban (4.3%)", "Dominican (3.7%)", "Guatemalan (3.2%)", "Spanish (3.0%)", "Colombian (2.6%)", "Honduran (2.1%)", "Ecuadorian (1.5%)"],
-                        avgHHSize: "3.15", avgKids: "0.87", multiGenHH: "13.0%", medianIncome: "$72,574", employmentRate: "69.0%", collegeDegree: "45.7%", spendingPower: "$2.08 Trillion", disabilityStatus: "10.8%",
+                        avgHHSize: "3.15", avgKids: "0.87", multiGenHH: "13.0%", medianIncome: "$72,574", employmentRate: "69.0%", collegeDegree: "45.7%", spendingPower: "$2.08 Trillion", disabilityStatus: "10.8%", disabilityUnder65: "7.2%",
                         states: [{ state: "California", pop: "16,069,214", share: "40.8%" }, { state: "Texas", pop: "12,602,305", share: "40.3%" }, { state: "Florida", pop: "6,706,088", share: "28.7%" }, { state: "New York", pop: "4,019,288", share: "20.2%" }, { state: "Puerto Rico", pop: "3,167,325", share: "98.9%" }, { state: "Illinois", pop: "2,462,768", share: "19.4%" }, { state: "Arizona", pop: "2,435,661", share: "32.1%" }, { state: "New Jersey", pop: "2,229,464", share: "23.5%" }, { state: "Colorado", pop: "1,382,948", share: "23.2%" }, { state: "North Carolina", pop: "1,324,570", share: "12.0%" }]
                     },
                     asian: {
@@ -593,7 +596,7 @@
                         genBreakout: { genZ: "18.2%", millennial: "31.2%", genX: "21.6%", boomer: "18.3%", silent: "10.7%" },
                         foreignBorn: "63.4%", usBorn: "36.6%", under18UsBorn: "82.0%", under18ForeignBorn: "18.0%",
                         ancestry: ["Asian Indian (24.3%)", "Chinese (21.4%)", "Filipino (15.5%)", "Vietnamese (9.4%)", "Korean (7.5%)", "Pakistani (3.0%)", "Japanese (3.6%)", "Hmong (1.7%)", "Bangladeshi (1.5%)", "Taiwanese (1.4%)"],
-                        avgHHSize: "2.83", avgKids: "0.61", multiGenHH: "13.4%", medianIncome: "$117,289", employmentRate: "67.7%", collegeDegree: "75.6%", spendingPower: "$1.39 Trillion", disabilityStatus: "8.6%",
+                        avgHHSize: "2.83", avgKids: "0.61", multiGenHH: "13.4%", medianIncome: "$117,289", employmentRate: "67.7%", collegeDegree: "75.6%", spendingPower: "$1.39 Trillion", disabilityStatus: "8.6%", disabilityUnder65: "3.9%",
                         states: [{ state: "California", pop: "6,349,574", share: "16.1%" }, { state: "Texas", pop: "1,917,758", share: "6.1%" }, { state: "New York", pop: "1,893,851", share: "9.5%" }, { state: "New Jersey", pop: "1,013,268", share: "10.7%" }, { state: "Washington", pop: "852,985", share: "10.7%" }, { state: "Illinois", pop: "812,604", share: "6.4%" }, { state: "Florida", pop: "722,622", share: "3.1%" }, { state: "Virginia", pop: "632,236", share: "7.2%" }, { state: "Massachusetts", pop: "551,579", share: "7.7%" }, { state: "Georgia", pop: "547,463", share: "4.9%" }]
                     },
                     native: {
@@ -601,7 +604,7 @@
                         genBreakout: { genZ: "23.8%", millennial: "26.4%", genX: "19.5%", boomer: "18.2%", silent: "12.1%" },
                         foreignBorn: "12.1%", usBorn: "87.9%", under18UsBorn: "95.1%", under18ForeignBorn: "4.9%",
                         ancestry: ["Mexican American Indian (17.1%)", "Navajo (10.2%)", "Central American Indian (9.8%)", "Cherokee (7.5%)", "Sioux (3.1%)", "Chippewa (2.7%)", "Choctaw (2.8%)", "Apache (2.3%)", "Lumbee (1.8%)", "Pueblo (1.5%)"],
-                        avgHHSize: "2.71", avgKids: "0.69", multiGenHH: "12.5%", medianIncome: "$63,627", employmentRate: "63.5%", collegeDegree: "47.1%", spendingPower: "Data Unavailable", disabilityStatus: "12.5%",
+                        avgHHSize: "2.71", avgKids: "0.69", multiGenHH: "12.5%", medianIncome: "$63,627", employmentRate: "63.5%", collegeDegree: "47.1%", spendingPower: "Data Unavailable", disabilityStatus: "12.5%", disabilityUnder65: "10.0%",
                         states: [{ state: "California", pop: "560,852", share: "1.4%" }, { state: "Arizona", pop: "304,625", share: "4.0%" }, { state: "Oklahoma", pop: "290,584", share: "7.1%" }, { state: "Texas", pop: "268,376", share: "0.9%" }, { state: "New Mexico", pop: "205,793", share: "9.7%" }, { state: "North Carolina", pop: "129,569", share: "1.2%" }, { state: "New York", pop: "118,866", share: "0.6%" }, { state: "Illinois", pop: "105,434", share: "0.8%" }, { state: "Alaska", pop: "104,023", share: "14.1%" }, { state: "Florida", pop: "100,235", share: "0.4%" }]
                     },
                     twomore: {
@@ -609,7 +612,7 @@
                         genBreakout: { genZ: "34.1%", millennial: "28.5%", genX: "16.8%", boomer: "13.2%", silent: "7.4%" },
                         foreignBorn: "24.8%", usBorn: "75.2%", under18UsBorn: "94.5%", under18ForeignBorn: "5.5%",
                         ancestry: ["White & Some Other Race (68.3%)", "White & Black (10.2%)", "White & Native American (8.3%)", "White & Asian (8.0%)", "Black & Some Other Race (3.2%)", "Black & AAPI (0.8%)", "Native American & Some Other Race (0.1%)", "AAPI & Some Other Race (0.6%)", "Tri-racial (5.7%)", "Multiracial Four+ (0.7%)"],
-                        avgHHSize: "2.71", avgKids: "0.69", multiGenHH: "9.1%", medianIncome: "$77,248", employmentRate: "68.1%", collegeDegree: "56.1%", spendingPower: "Data Unavailable", disabilityStatus: "9.1%",
+                        avgHHSize: "2.71", avgKids: "0.69", multiGenHH: "9.1%", medianIncome: "$77,248", employmentRate: "68.1%", collegeDegree: "56.1%", spendingPower: "Data Unavailable", disabilityStatus: "9.1%", disabilityUnder65: "7.2%",
                         states: [{ state: "California", pop: "7,454,033", share: "19.0%" }, { state: "Texas", pop: "7,059,981", share: "23.9%" }, { state: "Florida", pop: "4,165,040", share: "19.1%" }, { state: "New York", pop: "2,120,205", share: "10.7%" }, { state: "Arizona", pop: "1,462,148", share: "20.1%" }, { state: "Illinois", pop: "1,406,470", share: "11.1%" }, { state: "Puerto Rico", pop: "1,167,170", share: "35.8%" }, { state: "New Jersey", pop: "1,120,232", share: "12.1%" }, { state: "Washington", pop: "956,667", share: "12.4%" }, { state: "Georgia", pop: "945,521", share: "8.8%" }]
                     },
                     lgbtq: {
@@ -619,7 +622,7 @@
                         foreignBorn: "10.8%", usBorn: "89.0%", under18UsBorn: "96.2%", under18ForeignBorn: "3.8%",
                         raceEthnicityPie: { white: "53.5%", hispanic: "21.0%", black: "12.8%", asian: "5.5%", multiracial: "6.0%" },
                         avgHHSize: "2.25", avgKids: "0.45", multiGenHH: "2.8%", maritalStatus: "26.8% Married / 13.5% Domestic Partner", parentalStatus: "17.5% Raising Children under 18",
-                        medianIncome: "$74,065", employmentRate: "66.8%", collegeDegree: "63.6%", spendingPower: "$1.22 Trillion", disabilityStatus: "20.1%", growthFrom2010: "+91% increase in self-identification",
+                        medianIncome: "$74,065", employmentRate: "66.8%", collegeDegree: "63.6%", spendingPower: "$1.22 Trillion", disabilityStatus: "20.1%", disabilityUnder65: "N/A", growthFrom2010: "+91% increase in self-identification",
                         states: [{ state: "California", pop: "2,880,000", share: "7.4%" }, { state: "Texas", pop: "1,950,000", share: "6.6%" }, { state: "Florida", pop: "1,420,000", share: "6.5%" }, { state: "New York", pop: "1,420,000", share: "7.3%" }, { state: "Illinois", pop: "850,000", share: "6.9%" }, { state: "Ohio", pop: "740,000", share: "6.3%" }, { state: "Georgia", pop: "710,000", share: "6.6%" }, { state: "Pennsylvania", pop: "690,000", share: "5.4%" }, { state: "North Carolina", pop: "640,000", share: "6.1%" }, { state: "Washington", pop: "550,000", share: "7.7%" }]
                     }
                 }
@@ -847,6 +850,7 @@
                 employmentRate: { tot: tot.employmentRate, nhw: nhw.employmentRate },
                 collegeDegree: { tot: tot.collegeDegree, nhw: nhw.collegeDegree },
                 disabilityStatus: { tot: tot.disabilityStatus, nhw: nhw.disabilityStatus },
+                disabilityUnder65: { tot: tot.disabilityUnder65, nhw: nhw.disabilityUnder65 },
                 totalPop: { tot: tot.totalPop, nhw: nhw.totalPop },
                 shareUS: { tot: tot.shareUS, nhw: nhw.shareUS }
             };
@@ -1032,15 +1036,19 @@
 
                 <div class="card-box">
                     <div class="card-header-title">Disability Status</div>
-                    <div class="bg-slate-100 p-5 rounded-2xl border-2 border-slate-300 flex items-center justify-between">
-                        <div>
-                            <div class="stat-label">Population Percentage with a Disability</div>
+                    <div class="bg-slate-100 p-5 rounded-2xl border-2 border-slate-300 flex flex-col md:flex-row items-center justify-between gap-4">
+                        <div class="flex-1">
+                            <div class="stat-label">Total Audience with a Disability</div>
                             <div class="stat-value text-slate-900">${data.disabilityStatus}</div>
                             ${getSubtext('disabilityStatus')}
                         </div>
-                        <div class="text-right">
+                        <div class="flex-1 border-t-2 md:border-t-0 md:border-l-2 border-slate-300 pt-4 md:pt-0 md:pl-6 w-full">
+                            <div class="stat-label">Ages 64 and Under</div>
+                            <div class="stat-value text-slate-600">${data.disabilityUnder65 || 'N/A'}</div>
+                            ${getSubtext('disabilityUnder65')}
+                        </div>
+                        <div class="md:w-1/4 text-right">
                             ${getMetricSource('disabilityStatus')}
-                            <div class="text-[0.65rem] font-bold text-slate-500 mt-1 uppercase tracking-wider">Ages 64 and under</div>
                         </div>
                     </div>
                 </div>
