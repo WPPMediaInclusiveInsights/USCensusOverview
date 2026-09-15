@@ -188,7 +188,7 @@
                     </div>
                     <div class="bg-slate-100 p-5 rounded-xl border-l-8 border-slate-700">
                         <h2 class="text-lg md:text-xl font-extrabold text-slate-900 uppercase tracking-wide mb-2">How To Use This Tool</h2>
-                        <p>Click on the audience tabs below to instantly view generational spreads, complete college attainment breakdowns, and visual charts. The <strong class="text-[#000050] font-bold">Total Population</strong> tab houses macro projections, state-level insights, and trend timelines. Use the Survey Year dropdown menu to toggle across historical and modern ACS 1-Year datasets.</p>
+                        <p>Click on the audience tabs below to instantly view generational spreads, complete college attainment breakdowns, and visual charts. The <strong class="text-[#000050] font-bold">Total Population</strong> tab houses macro projections, state-level insights, and trend timelines. Use the Survey Year dropdown menu to toggle across historical and modern ACS 1-Year datasets (2021–2024).</p>
                     </div>
                 </div>
 
@@ -543,7 +543,7 @@
                         ancestry: ["Asian Indian (24.3%)", "Chinese (21.4%)", "Filipino (15.5%)", "Vietnamese (9.4%)", "Korean (7.5%)", "Pakistani (3.0%)", "Japanese (3.6%)", "Hmong (1.7%)", "Bangladeshi (1.5%)", "Taiwanese (1.4%)"],
                         avgHHSize: "2.83", avgKids: "0.61", multiGenHH: "13.4%", medianIncome: "$117,289", employmentRate: "67.7%", collegeDegree: "75.6%", spendingPower: "$1.9 Trillion", disabilityStatus: "8.6%", disabilityUnder65: "4.2%",
                         states: [
-                            { state: "California", pop: "6,349,574", share: "16.1%" }, { state: "Texas", pop: "1,917,758", share: "6.1%" }, { state: "New York", pop: "1,893,851", share: "9.5%" }, { state: "New Jersey", pop: "10,13,268", share: "10.7%" }, { state: "Washington", pop: "852,985", share: "10.7%" }, { state: "Illinois", pop: "812,604", share: "6.4%" }, { state: "Florida", pop: "722,622", share: "3.1%" }, { state: "Virginia", pop: "632,236", share: "7.2%" }, { state: "Massachusetts", pop: "551,579", share: "7.7%" }, { state: "Georgia", pop: "547,463", share: "4.9%" }
+                            { state: "California", pop: "6,349,574", share: "16.1%" }, { state: "Texas", pop: "1,917,758", share: "6.1%" }, { state: "New York", pop: "1,893,851", share: "9.5%" }, { state: "New Jersey", pop: "1,013,268", share: "10.7%" }, { state: "Washington", pop: "852,985", share: "10.7%" }, { state: "Illinois", pop: "812,604", share: "6.4%" }, { state: "Florida", pop: "722,622", share: "3.1%" }, { state: "Virginia", pop: "632,236", share: "7.2%" }, { state: "Massachusetts", pop: "551,579", share: "7.7%" }, { state: "Georgia", pop: "547,463", share: "4.9%" }
                         ]
                     },
                     native: {
@@ -742,7 +742,7 @@
                     </div>
                 </div>
 
-                <!-- CHARTS ROW 1 (PIE CHART WITH REFINED LEADER LINES - CUTOFF FIXED) -->
+                <!-- CHARTS ROW 1 (HORIZONTAL STACKED BAR WITH ALTERNATING TOP/BOTTOM LABELS & COLORED LEADER LINES) -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div class="card-box">
                         <div class="card-header-title flex justify-between items-center mb-1">
@@ -750,9 +750,9 @@
                             <span class="source-tag">B03002</span>
                         </div>
                         
-                        <!-- Spacious container allowing ample room for outside callout leader lines -->
-                        <div class="relative h-[400px] sm:h-[450px] md:h-[480px] w-full flex items-center justify-center py-2 overflow-visible">
-                            <canvas id="totalCompositionPieChart"></canvas>
+                        <!-- Spacious container allowing ample room for alternating top/bottom labels and leader lines -->
+                        <div class="relative h-72 sm:h-80 w-full flex items-center justify-center py-2 overflow-visible">
+                            <canvas id="totalCompositionStackedBar"></canvas>
                         </div>
                         <div class="source-tag-container"><span class="source-tag">B03002 (ACS 1-Year)</span></div>
                     </div>
@@ -898,25 +898,25 @@
 
                         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mt-2">
                             <!-- Bisexual (58.6%) -->
-                            <div class="bg-white p-3.5 rounded-xl border-2 border-[#5465FF]/30 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                            <div class="bg-white p-4 rounded-xl border-2 border-[#5465FF]/30 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
                                 <div>
                                     <div class="flex justify-between items-center mb-1">
                                         <span class="text-[0.7rem] font-extrabold uppercase tracking-wider text-slate-600">Bisexual</span>
                                         <span class="text-[0.6rem] font-bold px-1.5 py-0.5 rounded bg-[#5465FF]/10 text-[#5465FF]">Majority</span>
                                     </div>
-                                    <div class="text-2xl sm:text-3xl font-black text-[#5465FF] leading-none my-1.5">58.6%</div>
+                                    <div class="text-2xl sm:text-3xl font-black text-[#5465FF] leading-none my-2">58.6%</div>
                                     <div class="text-[0.68rem] font-semibold text-slate-500 leading-tight">~17.9M adults; largest cohort</div>
                                 </div>
                             </div>
 
                             <!-- Gay (17.4%) -->
-                            <div class="bg-white p-3.5 rounded-xl border-2 border-[#1E40AF]/30 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                            <div class="bg-white p-4 rounded-xl border-2 border-[#1E40AF]/30 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
                                 <div>
                                     <div class="flex justify-between items-center mb-1">
                                         <span class="text-[0.7rem] font-extrabold uppercase tracking-wider text-slate-600">Gay</span>
                                         <span class="text-[0.6rem] font-bold px-1.5 py-0.5 rounded bg-[#1E40AF]/10 text-[#1E40AF]">Cohort</span>
                                     </div>
-                                    <div class="text-2xl sm:text-3xl font-black text-[#1E40AF] leading-none my-1.5">17.4%</div>
+                                    <div class="text-2xl sm:text-3xl font-black text-[#1E40AF] leading-none my-2">17.4%</div>
                                     <div class="text-[0.68rem] font-semibold text-slate-500 leading-tight">~5.3M adults across U.S.</div>
                                 </div>
                             </div>
@@ -928,7 +928,7 @@
                                         <span class="text-[0.7rem] font-extrabold uppercase tracking-wider text-slate-600">Lesbian</span>
                                         <span class="text-[0.6rem] font-bold px-1.5 py-0.5 rounded bg-[#4A044E]/10 text-[#4A044E]">Cohort</span>
                                     </div>
-                                    <div class="text-2xl sm:text-3xl font-black text-[#4A044E] leading-none my-1.5">16.0%</div>
+                                    <div class="text-2xl sm:text-3xl font-black text-[#4A044E] leading-none my-2">16.0%</div>
                                     <div class="text-[0.68rem] font-semibold text-slate-500 leading-tight">~4.9M adults across U.S.</div>
                                 </div>
                             </div>
@@ -940,7 +940,7 @@
                                         <span class="text-[0.7rem] font-extrabold uppercase tracking-wider text-slate-600">Transgender</span>
                                         <span class="text-[0.6rem] font-bold px-1.5 py-0.5 rounded bg-[#6D28D9]/10 text-[#6D28D9]">Gender</span>
                                     </div>
-                                    <div class="text-2xl sm:text-3xl font-black text-[#6D28D9] leading-none my-1.5">12.1%</div>
+                                    <div class="text-2xl sm:text-3xl font-black text-[#6D28D9] leading-none my-2">12.1%</div>
                                     <div class="text-[0.68rem] font-semibold text-slate-500 leading-tight">~3.7M adults across U.S.</div>
                                 </div>
                             </div>
@@ -952,7 +952,7 @@
                                         <span class="text-[0.7rem] font-extrabold uppercase tracking-wider text-slate-600">Pan / Other</span>
                                         <span class="text-[0.6rem] font-bold px-1.5 py-0.5 rounded bg-[#9D71E8]/10 text-[#9D71E8]">Emerging</span>
                                     </div>
-                                    <div class="text-2xl sm:text-3xl font-black text-[#9D71E8] leading-none my-1.5">5.8%</div>
+                                    <div class="text-2xl sm:text-3xl font-black text-[#9D71E8] leading-none my-2">5.8%</div>
                                     <div class="text-[0.68rem] font-semibold text-slate-500 leading-tight">~1.8M adults; queer/pan/other</div>
                                 </div>
                             </div>
@@ -1496,136 +1496,135 @@
         }
 
         function initTotalCharts() {
-            // PIE CHART WITH SAFE OUTSIDE CALLOUT LEADER LINES (CUTOFF FIXED) & CLEAN LEGEND WITHOUT PERCENTAGES
-            const ctxPie = document.getElementById('totalCompositionPieChart');
-            if (ctxPie) {
+            // REPLACED PIE CHART WITH HORIZONTAL STACKED BAR CHART & ALTERNATING TOP/BOTTOM COLORED POINTER LINES
+            const ctxStackedComp = document.getElementById('totalCompositionStackedBar');
+            if (ctxStackedComp) {
                 const c = censusDB[currentYear].compositionShares;
 
-                // Dedicated Custom Plugin for Thin Callout Leader Lines pointing to smaller slices
-                const pieCalloutPlugin = {
-                    id: 'pieCalloutPlugin',
+                // Dedicated Plugin for Alternating Top/Bottom Labels with Colored Leader Lines
+                const alternatingCalloutPlugin = {
+                    id: 'alternatingCalloutPlugin',
                     afterDraw(chart) {
                         const { ctx } = chart;
-                        const meta = chart.getDatasetMeta(0);
-                        if (!meta || !meta.data) return;
+                        ctx.save();
 
-                        // Slices < 10% that have labels outside with lines:
-                        // Asian on the left/top-left; 2+ Races, Other, Native Am. tiered cleanly down the right
-                        const calloutData = [
-                            { idx: 3, label: 'Asian 6.2%', isRight: false, lineLen: 14, yShift: 0 },
-                            { idx: 4, label: '2+ Races 4.6%', isRight: true, lineLen: 16, yShift: -8 },
-                            { idx: 5, label: 'Other 0.7%', isRight: true, lineLen: 22, yShift: 10 },
-                            { idx: 6, label: 'Native Am. 0.5%', isRight: true, lineLen: 28, yShift: 26 }
+                        // 7 Segments alternating Top (4) and Bottom (3)
+                        // xShift for 2+ Races moved significantly left (-75) to avoid overlapping Native American
+                        const segments = [
+                            { idx: 0, name: 'White', val: c.white + '%', isTop: true, xShift: 0 },
+                            { idx: 1, name: 'Black', val: c.black + '%', isTop: false, xShift: 0 },
+                            { idx: 2, name: 'Hispanic', val: c.hispanic + '%', isTop: true, xShift: -25 },
+                            { idx: 3, name: 'Asian', val: c.asian + '%', isTop: false, xShift: -20 },
+                            { idx: 4, name: '2+ Races', val: c.twomore + '%', isTop: true, xShift: -75 },
+                            { idx: 5, name: 'Other', val: c.other + '%', isTop: false, xShift: 16 },
+                            { idx: 6, name: 'Native Am.', val: c.native + '%', isTop: true, xShift: 24 }
                         ];
 
-                        ctx.save();
-                        ctx.font = 'bold 10.5px Poppins';
+                        segments.forEach(seg => {
+                            const meta = chart.getDatasetMeta(seg.idx);
+                            if (!meta || !meta.data || !meta.data[0]) return;
+                            const el = meta.data[0];
+                            const sliceLeft = Math.min(el.base, el.x);
+                            const sliceRight = Math.max(el.base, el.x);
+                            const sliceMidX = (sliceLeft + sliceRight) / 2;
+                            const barHalfH = (el.height || 36) / 2;
+                            const barEdgeY = seg.isTop ? el.y - barHalfH : el.y + barHalfH;
 
-                        calloutData.forEach(item => {
-                            const arc = meta.data[item.idx];
-                            if (!arc) return;
+                            // Calculate leader line target coordinates
+                            const lineDist = 30;
+                            const targetY = seg.isTop ? barEdgeY - lineDist : barEdgeY + lineDist;
+                            let targetX = sliceMidX + seg.xShift;
 
-                            const midAngle = (arc.startAngle + arc.endAngle) / 2;
-                            const cx = arc.x;
-                            const cy = arc.y;
-                            const r = arc.outerRadius;
+                            // Edge safety clamps so labels are never cut off
+                            targetX = Math.max(45, Math.min(chart.width - 55, targetX));
 
-                            // Point on arc edge
-                            const xEdge = cx + Math.cos(midAngle) * r;
-                            const yEdge = cy + Math.sin(midAngle) * r;
+                            const color = chart.data.datasets[seg.idx].backgroundColor;
 
-                            // Elbow point
-                            const extRadius = r + item.lineLen;
-                            const xExt = cx + Math.cos(midAngle) * extRadius;
-                            let yExt = cy + Math.sin(midAngle) * extRadius + item.yShift;
-
-                            // Strict clamping so labels never clip on canvas boundaries
-                            yExt = Math.max(16, Math.min(chart.height - 35, yExt));
-
-                            // Horizontal elbow direction
-                            const shoulderLen = 14;
-                            let xShoulder = xExt + (item.isRight ? shoulderLen : -shoulderLen);
-                            const yShoulder = yExt;
-
-                            // Measure text to prevent right/left edge clipping
-                            const textWidth = ctx.measureText(item.label).width;
-                            if (item.isRight) {
-                                if (xShoulder + textWidth + 8 > chart.width) {
-                                    xShoulder = chart.width - textWidth - 8;
-                                }
-                            } else {
-                                if (xShoulder - textWidth - 8 < 0) {
-                                    xShoulder = textWidth + 8;
-                                }
-                            }
-
-                            // Draw thin leader line
+                            // 1. Draw small anchor dot on bar edge
                             ctx.beginPath();
-                            ctx.moveTo(xEdge, yEdge);
-                            ctx.lineTo(xExt, yExt);
-                            ctx.lineTo(xShoulder, yShoulder);
-                            ctx.strokeStyle = arc.options.backgroundColor;
+                            ctx.arc(sliceMidX, barEdgeY, 2.5, 0, Math.PI * 2);
+                            ctx.fillStyle = color;
+                            ctx.fill();
+
+                            // 2. Draw colored leader line aligned directly with shifted target
+                            ctx.beginPath();
+                            ctx.moveTo(sliceMidX, barEdgeY);
+                            if (Math.abs(targetX - sliceMidX) > 2) {
+                                const midY = seg.isTop ? barEdgeY - 14 : barEdgeY + 14;
+                                ctx.lineTo(targetX, midY);
+                            }
+                            ctx.lineTo(targetX, targetY);
+                            ctx.strokeStyle = color;
                             ctx.lineWidth = 1.5;
                             ctx.stroke();
 
-                            // Small anchor point on arc edge
+                            // 3. Draw small end tick
                             ctx.beginPath();
-                            ctx.arc(xEdge, yEdge, 2, 0, 2 * Math.PI);
-                            ctx.fillStyle = arc.options.backgroundColor;
+                            ctx.arc(targetX, targetY, 2, 0, Math.PI * 2);
+                            ctx.fillStyle = color;
                             ctx.fill();
 
-                            // Draw outside label text
-                            ctx.fillStyle = '#000050';
-                            ctx.textAlign = item.isRight ? 'left' : 'right';
-                            ctx.textBaseline = 'middle';
-                            const xText = xShoulder + (item.isRight ? 4 : -4);
-                            ctx.fillText(item.label, xText, yShoulder);
+                            // 4. Draw alternating text labels (Name & Value)
+                            ctx.textAlign = 'center';
+                            if (seg.isTop) {
+                                ctx.textBaseline = 'bottom';
+                                ctx.font = 'bold 11px Poppins';
+                                ctx.fillStyle = '#000050';
+                                ctx.fillText(seg.name, targetX, targetY - 16);
+                                ctx.font = '900 12px Poppins';
+                                ctx.fillStyle = color === '#B8C9F8' ? '#000050' : color;
+                                ctx.fillText(seg.val, targetX, targetY - 3);
+                            } else {
+                                ctx.textBaseline = 'top';
+                                ctx.font = '900 12px Poppins';
+                                ctx.fillStyle = color === '#B8C9F8' ? '#000050' : color;
+                                ctx.fillText(seg.val, targetX, targetY + 3);
+                                ctx.font = 'bold 11px Poppins';
+                                ctx.fillStyle = '#000050';
+                                ctx.fillText(seg.name, targetX, targetY + 18);
+                            }
                         });
                         ctx.restore();
                     }
                 };
 
-                new Chart(ctxPie, {
-                    type: 'pie',
-                    plugins: [pieCalloutPlugin],
+                new Chart(ctxStackedComp, {
+                    type: 'bar',
+                    plugins: [alternatingCalloutPlugin],
                     data: {
-                        labels: ['White', 'Hispanic', 'Black', 'Asian', '2+ Races', 'Other', 'Native Am.'],
-                        datasets: [{
-                            data: [c.white, c.hispanic, c.black, c.asian, c.twomore, c.other, c.native],
-                            backgroundColor: [
-                                PALETTE.white,
-                                PALETTE.hispanic,
-                                PALETTE.black,
-                                PALETTE.asian,
-                                PALETTE.twomore,
-                                PALETTE.other,
-                                PALETTE.native
-                            ],
-                            borderColor: '#FFFFFF',
-                            borderWidth: 2
-                        }]
+                        labels: ['U.S. Population Share'],
+                        datasets: [
+                            { label: 'White', data: [c.white], backgroundColor: PALETTE.white, barThickness: 36 },
+                            { label: 'Black', data: [c.black], backgroundColor: PALETTE.black, barThickness: 36 },
+                            { label: 'Hispanic', data: [c.hispanic], backgroundColor: PALETTE.hispanic, barThickness: 36 },
+                            { label: 'Asian', data: [c.asian], backgroundColor: PALETTE.asian, barThickness: 36 },
+                            { label: '2+ Races', data: [c.twomore], backgroundColor: PALETTE.twomore, barThickness: 36 },
+                            { label: 'Other', data: [c.other], backgroundColor: PALETTE.other, barThickness: 36 },
+                            { label: 'Native Am.', data: [c.native], backgroundColor: PALETTE.native, barThickness: 36 }
+                        ]
                     },
                     options: {
+                        indexAxis: 'y',
                         responsive: true,
                         maintainAspectRatio: false,
                         layout: {
-                            padding: { top: 35, bottom: 20, left: 65, right: 85 }
+                            padding: { top: 60, bottom: 60, left: 35, right: 45 }
+                        },
+                        scales: {
+                            x: { stacked: true, display: false, max: 100 },
+                            y: { stacked: true, display: false }
                         },
                         plugins: {
                             legend: {
                                 position: 'bottom',
                                 labels: {
-                                    font: { family: 'Poppins', size: 12, weight: 'bold' },
-                                    padding: 14,
-                                    boxWidth: 14
+                                    font: { family: 'Poppins', size: 11, weight: 'bold' },
+                                    padding: 12,
+                                    boxWidth: 12
                                 }
                             },
                             datalabels: {
-                                // Only display inside the large slices where the number fits comfortably
-                                display: (ctx) => ctx.dataset.data[ctx.dataIndex] >= 10,
-                                color: '#FFFFFF',
-                                font: { family: 'Poppins', weight: '800', size: 13 },
-                                formatter: (val) => val + '%'
+                                display: false // Disabled inside bar to ensure all labels are positioned cleanly above and below
                             }
                         }
                     }
